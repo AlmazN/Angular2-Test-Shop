@@ -9,13 +9,17 @@ import { ArticleComponent } from './article/article.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { APP_ROUTES } from './app.routes';
+import { ProductsComponent } from './products/products.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleComponent,
     AboutComponent,
-    HomeComponent
+    HomeComponent,
+    ProductsComponent,
+    ProductComponent
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),
