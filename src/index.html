@@ -1,11 +1,12 @@
 <!doctype html>
 <html>
-  <head>
-    <base href="/">
-    <title>Angular 2 - Simple Reddit</title>
-    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="images/favicon.ico" />
-    <!-- Libraries --
+
+<head>
+  <base href="/">
+  <title>Angular 2 - Simple Reddit</title>
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" href="images/favicon.ico" />
+  <!-- Libraries --
     <script src="../node_modules/es6-shim/es6-shim.js"></script>
     <script src="../node_modules/angular2/bundles/angular2-polyfills.js"></script>
     <script src="../node_modules/systemjs/dist/system.src.js"></script>
@@ -13,43 +14,15 @@
     <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="vendor/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  <body>
+  <link rel="stylesheet" type="text/css" href="vendor/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 
-    <!-- Configure System.js, our module loader -->
-    <script>
-      System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
-      });
-      System.import('app.js')
-            .then(null, console.error.bind(console));
-    </script>
+<body>
+  <div class="ui main text container">
+    <my-app></my-app>
+    <!-- Our app loads here! -->
+  </div>
+</body>
 
-    <!-- Menu Bar -->
-    <div class="ui menu">
-      <div class="ui container">
-        <a href="#" class="header item">
-          <img class="logo" src="images/ng-book-2-minibook.png">
-          ng-book 2
-        </a>
-        <div class="header item borderless">
-          <h1 class="ui header">
-            Angular 2 Simple Reddit
-          </h1>
-        </div>
-      </div>
-    </div>
-
-    <div class="ui main text container">
-      <reddit></reddit> <!-- Our app loads here! -->
-    </div>
-
-  </body>
 </html>

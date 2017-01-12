@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { Article } from './article/article.model';
 
 @Component({
-  selector: 'reddit',
+  selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
