@@ -2,7 +2,7 @@ export class Product {
     id: number;
     name: string;
     description: string;
-    price: number;
+    price: string;
     quantity: number;
     imageURL: string;
 
@@ -10,7 +10,7 @@ export class Product {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = Number(price);
+        this.price = price;
         this.quantity = quantity;
         this.imageURL = imageURL;
     }
