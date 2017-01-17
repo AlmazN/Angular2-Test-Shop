@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { JSON } from './mock-products';
 import { Product } from './product/product.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -12,7 +11,7 @@ export class ProductsService {
 
   constructor(private http: Http) { }
 
-  private productsURL = 'http://localhost:3000/api/products';
+  private productsURL = '/api/products';
 
   getProducts(): Observable<Product[]> {
 
