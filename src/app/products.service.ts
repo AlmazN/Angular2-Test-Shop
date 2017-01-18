@@ -17,6 +17,7 @@ export class ProductsService {
 
     return this.http.get(this.productsURL)
       .map((res: Response) => res.json())
+      .map(res => res.products)
       .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
   }
 
