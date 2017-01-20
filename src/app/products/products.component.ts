@@ -10,7 +10,7 @@ import { ProductsService } from '../products.service';
 })
 
 export class ProductsComponent implements OnInit {
-  products: Product[];
+  products: Product[] = [];
   pending: boolean;
   
   constructor (private productsServise: ProductsService) {

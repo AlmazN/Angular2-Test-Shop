@@ -1,10 +1,6 @@
 <div class="ui grid posts">
-  <div *ngIf="pending">Получаем товары. Пожалуйста подождите...</div>
-  <div class="row" 
-  *ngFor="let product of products">
-    <app-product 
-	[product]="product" 
-	*ngIf="product.quantity > 0">
-    </app-product>
-  </div>
+	<div *ngIf="pending">Получаем товары. Пожалуйста подождите...</div>
+	<app-product *ngFor="let product of products | quantityFilter"
+		[product]="product">
+	</app-product>
 </div>
