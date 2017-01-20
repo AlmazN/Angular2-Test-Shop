@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit {
         this.pending = false;
         this.products = products;
       }, err => {
-        this.pending = undefined;
+        this.pending = false;
         console.log('Проблемы с получением списка товаров. Текст ошибки: \n' + err);
       });
   }

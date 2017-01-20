@@ -1,5 +1,5 @@
 <div class="ui grid posts">
-  <div *ngIf="pending === true">Получаем товары. Пожалуйста подождите...</div>
+  <div *ngIf="pending">Получаем товары. Пожалуйста подождите...</div>
   <div class="row" 
   *ngFor="let product of products">
     <app-product 
