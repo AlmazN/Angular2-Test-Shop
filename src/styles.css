@@ -44,3 +44,13 @@ ul.ui.list li:before {
   clear: both;
   width: 100%;
 }
+
+.loader-container, .loader-container > div {
+  margin: auto;
+}
+
+.loader {
+  background: url(images/loader-icon.gif) no-repeat center center;
+  width: 124px;
+  height: 124px;
+}
