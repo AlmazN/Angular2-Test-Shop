@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { APP_ROUTES } from './app.routes';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
+import { QuantityFilterPipe } from './quantity-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductComponent } from './product/product.component';
     AboutComponent,
     HomeComponent,
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    QuantityFilterPipe
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),
