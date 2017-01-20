@@ -12,6 +12,8 @@ import { APP_ROUTES } from './app.routes';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { QuantityFilterPipe } from './quantity-filter.pipe';
+import { SelfclosingAlertComponent } from './selfclosing-alert/selfclosing-alert.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { QuantityFilterPipe } from './quantity-filter.pipe';
     HomeComponent,
     ProductsComponent,
     ProductComponent,
-    QuantityFilterPipe
+    QuantityFilterPipe,
+    SelfclosingAlertComponent
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule
