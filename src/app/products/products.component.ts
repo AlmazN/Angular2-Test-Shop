@@ -11,12 +11,23 @@ import { ProductsService } from '../products.service';
 
 export class ProductsComponent implements OnInit {
   products: Product[];
+  pending: boolean;
   
   constructor (private productsServise: ProductsService) {
   }
 
   getProducts(): void {
-    this.productsServise.getProducts().subscribe(products => this.products = products);
+    this.pending = true;
+    this.productsServise
+      .getProducts()
+      .subscribe(products => 
+      {
+        this.pending = false;
+        this.products = products;
+      }, err => {
+        this.pending = undefined;
+        console.log('Проблемы с получением списка товаров. Текст ошибки: \n' + err);
+      });
   }
 
   ngOnInit(): void {
