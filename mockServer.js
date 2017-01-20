@@ -30,9 +30,11 @@ var json = {
 };
 
 app.get('/api/products', function(req, res) {
-    res.send(json);
+  setTimeout(function() {
+  res.send(json);
+  }, 2000);
 })
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Example app listening on port 3000!');
 })
