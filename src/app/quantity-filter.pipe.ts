@@ -1,12 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, Injectable } from '@angular/core';
+import { Product } from './product/product.model';
 
 @Pipe({
-  name: 'quantityFilter'
+  name: 'quantityFilter',
+  pure: false
 })
+
 export class QuantityFilterPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
+  transform(products: Product[]): Product[] {
+    return products.filter(product => product.quantity > 0);
   }
 
 }
