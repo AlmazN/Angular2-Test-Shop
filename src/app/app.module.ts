@@ -12,7 +12,7 @@ import { APP_ROUTES } from './app.routes';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { QuantityFilterPipe } from './quantity-filter.pipe';
-import { SelfclosingAlertComponent } from './selfclosing-alert/selfclosing-alert.component';
+import { PopupComponent } from './popup/popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductsComponent,
     ProductComponent,
     QuantityFilterPipe,
-    SelfclosingAlertComponent
+    PopupComponent
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),

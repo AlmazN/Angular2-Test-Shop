@@ -54,3 +54,11 @@ ul.ui.list li:before {
   width: 124px;
   height: 124px;
 }
+
+.popup {
+width: 250px;
+position: fixed;
+left: 5px;
+top: 50px;
+z-index: 999999;
+}

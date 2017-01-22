@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SelfclosingAlertComponent } from './selfclosing-alert.component';
+import { SelfclosingAlertComponent } from './popup.component';
 
 describe('SelfclosingAlertComponent', () => {
   let component: SelfclosingAlertComponent;
