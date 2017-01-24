@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Popup } from './popup.model';
 
 @Component({
   selector: 'app-popup',
@@ -8,16 +9,24 @@ import { Component, OnInit, Input } from '@angular/core';
   }
 })
 export class PopupComponent implements OnInit {
-  @Input() text: string; //текст попапа
-  @Input() dismissible: boolean; //можно ли закрыть вручную
-  @Input() delay: number; //ms, если не задано, то попап не исчезает и его можно закрыть только вручную
-  @Input() type: string = "info"; // success, info , warning , danger
-  private show: boolean; //флаг, отвечающий за показ попапа
+  private data: Popup[];
+  type: string;
+  text: string;
+  dismissible: boolean;
+  delay: number;
+  show: boolean = true; 
+  popup: Popup;
 
-  doShow(): void {
-    this.show = true;
-    if (this.delay) {
-      setTimeout(() => this.show = false, this.delay);
+  doShow(settings: Popup): void {
+    this.data.push(settings);
+    if(settings.delay) {
+      setTimeout(() => {
+        this.show = false;
+        let index = this.data.indexOf(settings);
+        if(index > -1) {
+          this.data.splice(index, 1);
+        }
+      }, settings.delay);
     }
   }
 
