@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Product } from '../product/product.model';
 import { ProductsService } from '../products.service';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-products',
@@ -12,6 +13,7 @@ import { ProductsService } from '../products.service';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   pending: boolean;
+  @ViewChild(PopupComponent) popup: PopupComponent;
   
   constructor (private productsServise: ProductsService) {
   }
@@ -23,6 +25,7 @@ export class ProductsComponent implements OnInit {
       .subscribe(products => 
       {
         this.pending = false;
+        this.popup.doShow();
         this.products = products;
       }, err => {
         this.pending = false;

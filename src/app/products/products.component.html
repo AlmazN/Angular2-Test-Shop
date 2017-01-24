@@ -1,4 +1,6 @@
 <div class="ui grid posts">
+	<app-popup [text]="'Got products'" [type]="'info'" [dismissible]="false" [delay]="2000"></app-popup>
+	<app-popup [text]="'Error!'" [type]="'warning'" [dismissible]="false" [delay]="2000"></app-popup>
 	<div class="loader-container" *ngIf="pending">
 		<div>Получаем товары. Пожалуйста подождите...</div>
 		<div class="loader"></div>
