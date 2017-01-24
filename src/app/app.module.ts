@@ -14,6 +14,7 @@ import { ProductComponent } from './product/product.component';
 import { QuantityFilterPipe } from './quantity-filter.pipe';
 import { PopupComponent } from './popup/popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductsComponent,
     ProductComponent,
     QuantityFilterPipe,
-    PopupComponent
+    PopupComponent,
+    ShopingCartComponent
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),
