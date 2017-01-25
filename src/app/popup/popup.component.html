@@ -1,7 +1,4 @@
-<div *ngFor="let popup of data">
-  <ngb-alert *ngIf="show" 
-  type="{{ type }}" 
-  (close)="show = false" 
-  [dismissible]="dismissible"
-  [popup]="popup">{{ text }}</ngb-alert>
-</div>
+<ngb-alert *ngFor="let popup of data" 
+type="{{ popup.type }}"
+[dismissible]="popup.dismissible" 
+>{{ popup.text }}</ngb-alert>
