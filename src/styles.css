@@ -58,8 +58,7 @@ ul.ui.list li:before {
 .popup {
   width: 250px;
   position: fixed;
-  left: 50%;
-  top: 5%;
-  margin-left: -125px;
+  left: 5px;
+  top: 5px;
   z-index: 999999;
 }

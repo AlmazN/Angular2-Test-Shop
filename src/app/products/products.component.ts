@@ -26,14 +26,20 @@ export class ProductsComponent implements OnInit {
       {
         this.pending = false;
         this.popup.doShow({
-          type: 'info',
-          text: 'Some text...',
+          type: 'success',
+          text: 'Товары получены!',
           dismissible: true,
-          delay: 3000
+          delay: 5000
         });
         this.products = products;
       }, err => {
         this.pending = false;
+        this.popup.doShow({
+          type: 'warning',
+          text: 'Проблемы с получением списка товаров!',
+          dismissible: true,
+          delay: 5000
+        });
         console.log('Проблемы с получением списка товаров. Текст ошибки: \n' + err);
       });
   }
