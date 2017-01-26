@@ -10,13 +10,12 @@ import { Popup } from './popup.model';
 })
 export class PopupComponent implements OnInit {
   private data: Popup[] = [];
-  timeoutID: any;
 
 
   doShow(settings: Popup): void {
     this.data.push(settings);
     if(settings.delay) {
-      this.timeoutID = setTimeout(() => {
+      settings.timeoutID = setTimeout(() => {
         let index = this.data.indexOf(settings);
         if(index > -1) {
           this.data.splice(index, 1);
@@ -32,7 +31,7 @@ export class PopupComponent implements OnInit {
     }
 
     if(popup.delay) {
-      clearTimeout(this.timeoutID);
+      clearTimeout(popup.timeoutID);
     }
   }
 
