@@ -10,7 +10,7 @@ import { Popup } from './popup.model';
 })
 export class PopupComponent implements OnInit {
   private data: Popup[] = [];
-  private timeoutID;
+  timeoutID: any;
 
 
   doShow(settings: Popup): void {

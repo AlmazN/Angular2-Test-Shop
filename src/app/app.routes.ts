@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProductsComponent } from './products/products.component';
 import { ArticleComponent } from './article/article.component';
+import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 
 export const APP_ROUTES: Routes = [
     {
@@ -18,8 +19,8 @@ export const APP_ROUTES: Routes = [
         component: ProductsComponent
     },
     {
-        path: 'article',
-        component: ArticleComponent
+        path: 'cart',
+        component: ShopingCartComponent
     },
     {
         path: '',

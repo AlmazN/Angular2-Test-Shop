@@ -10,6 +10,10 @@ export class ShopingCartService {
     console.log(this.productsInCart);
   }
 
+  getProductsInCart(): Product[] {
+    return this.productsInCart;
+  }
+
   constructor() { }
 
 }

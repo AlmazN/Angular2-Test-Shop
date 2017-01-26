@@ -15,6 +15,7 @@ import { QuantityFilterPipe } from './quantity-filter.pipe';
 import { PopupComponent } from './popup/popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
+import { ShopingCartService } from './shoping-cart.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ShopingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

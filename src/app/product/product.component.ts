@@ -8,8 +8,7 @@ import { ShopingCartService } from '../shoping-cart.service';
   styleUrls: ['./product.component.css'],
   host: {
     class: 'row'
-  },
-  providers: [ShopingCartService]
+  }
 })
 export class ProductComponent implements OnInit {
   @Input() product: Product;
