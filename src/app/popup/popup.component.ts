@@ -13,14 +13,15 @@ export class PopupComponent implements OnInit {
 
 
   doShow(settings: Popup): void {
-    this.data.push(settings);
-    if(settings.delay) {
-      settings.timeoutID = setTimeout(() => {
-        let index = this.data.indexOf(settings);
+    let popup = new Popup(settings);
+    this.data.push(popup);
+    if(popup.delay) {
+      popup.timeoutID = setTimeout(() => {
+        let index = this.data.indexOf(popup);
         if(index > -1) {
           this.data.splice(index, 1);
         }
-      }, settings.delay);
+      }, popup.delay);
     }
   }
 

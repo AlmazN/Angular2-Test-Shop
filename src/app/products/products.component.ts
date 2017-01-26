@@ -25,12 +25,6 @@ export class ProductsComponent implements OnInit {
       .subscribe(products => 
       {
         this.pending = false;
-        this.popup.doShow({
-          type: 'success',
-          text: 'Товары получены!',
-          dismissible: true,
-          delay: 5000
-        });
         this.products = products;
       }, err => {
         this.pending = false;
