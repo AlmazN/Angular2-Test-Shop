@@ -2,9 +2,11 @@
   <tr>
     <th>Имя товара</th>
     <th>Цена товара</th>
+    <th>Количество</th>
   </tr>
-  <tr *ngFor="let product of productsInCart">
-    <td>{{ product.name }}</td>
-    <td>{{ product.price }}</td>
+  <tr *ngFor="let cartproduct of productsInCart">
+    <td>{{ cartproduct.product.name }}</td>
+    <td>{{ cartproduct.product.price }}</td>
+    <td>{{ cartproduct.quantity }}</td>
   </tr>
 </table>
