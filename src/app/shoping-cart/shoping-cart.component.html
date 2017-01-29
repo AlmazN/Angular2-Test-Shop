@@ -4,7 +4,7 @@
     <th>Цена товара</th>
     <th>Количество</th>
   </tr>
-  <tr *ngFor="let cartproduct of productsInCart">
+  <tr *ngFor="let cartproduct of cartProducts">
     <td>{{ cartproduct.product.name }}</td>
     <td>{{ cartproduct.product.price }}</td>
     <td>{{ cartproduct.quantity }}</td>

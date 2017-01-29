@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopingCartService } from '../shoping-cart.service';
-import { Product } from '../product/product.model';
-import { CartProduct } from '../product/cart-product.model';
+import { ShopingCartService } from '../_services/shoping-cart.service';
+import { Product } from '../_models/product.model';
+import { CartProduct } from '../_models/cart-product.model';
 
 @Component({
   selector: 'app-shoping-cart',
@@ -9,12 +9,12 @@ import { CartProduct } from '../product/cart-product.model';
   styleUrls: ['./shoping-cart.component.css']
 })
 export class ShopingCartComponent implements OnInit {
-  productsInCart: CartProduct[];
+  cartProducts: CartProduct[];
 
   constructor(private cartService: ShopingCartService) { }
 
   ngOnInit() {
-    this.productsInCart = this.cartService.getProductsInCart();
+    this.cartProducts = this.cartService.getCartProducts();
   }
 
 }

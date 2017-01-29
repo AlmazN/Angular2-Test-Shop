@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
-import { Product } from './product/product.model';
+import { Product } from '../_models/product.model';
 
 @Pipe({
   name: 'quantityFilter',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Product } from '../product/product.model';
-import { ProductsService } from '../products.service';
+import { Product } from '../_models/product.model';
+import { ProductsService } from '../_services/products.service';
 import { PopupComponent } from '../popup/popup.component';
 
 @Component({
@@ -15,12 +15,12 @@ export class ProductsComponent implements OnInit {
   pending: boolean;
   @ViewChild(PopupComponent) popup: PopupComponent;
   
-  constructor (private productsServise: ProductsService) {
+  constructor (private productsService: ProductsService) {
   }
 
   getProducts(): void {
     this.pending = true;
-    this.productsServise
+    this.productsService
       .getProducts()
       .subscribe(products => 
       {
@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
         this.pending = false;
         this.popup.doShow({
           type: 'warning',
-          text: 'Проблемы с получением списка товаров!',
+          text: 'Проблемы с получением списка товаров.',
           dismissible: true,
           delay: 5000
         });

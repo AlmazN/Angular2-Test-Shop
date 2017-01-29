@@ -11,11 +11,11 @@ import { HomeComponent } from './home/home.component';
 import { APP_ROUTES } from './app.routes';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
-import { QuantityFilterPipe } from './quantity-filter.pipe';
+import { QuantityFilterPipe } from './_pipes/quantity-filter.pipe';
 import { PopupComponent } from './popup/popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
-import { ShopingCartService } from './shoping-cart.service';
+import { ShopingCartService } from './_services/shoping-cart.service';
 
 @NgModule({
   declarations: [
