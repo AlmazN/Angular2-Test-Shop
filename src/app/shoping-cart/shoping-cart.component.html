@@ -1,12 +1,24 @@
 <table class="table">
+  <thead>
   <tr>
     <th>Имя товара</th>
     <th>Цена товара</th>
     <th>Количество</th>
+    <th>Сумма</th>
   </tr>
+  </thead>
+  <tbody>
   <tr *ngFor="let cartproduct of cartProducts">
     <td>{{ cartproduct.product.name }}</td>
     <td>{{ cartproduct.product.price }}</td>
     <td>{{ cartproduct.quantity }}</td>
+    <td>{{ cartproduct.product.price * cartproduct.quantity }}</td>
   </tr>
+  </tbody>
+  <tfoot>
+    <td></td>
+    <td></td>
+    <td>Сумма:</td>
+    <td>{{ getTotalSum() }}</td>
+  </tfoot>
 </table>

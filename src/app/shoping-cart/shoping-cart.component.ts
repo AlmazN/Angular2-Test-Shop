@@ -11,6 +11,14 @@ import { CartProduct } from '../_models/cart-product.model';
 export class ShopingCartComponent implements OnInit {
   cartProducts: CartProduct[];
 
+  getTotalSum() {
+    let totalSum = 0;
+    for (let cartProduct of this.cartProducts) {
+      totalSum += Number(cartProduct.product.price) * cartProduct.quantity;
+    }
+    return totalSum;
+  }
+
   constructor(private cartService: ShopingCartService) { }
 
   ngOnInit() {
