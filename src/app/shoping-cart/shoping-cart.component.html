@@ -10,15 +10,15 @@
   <tbody>
   <tr *ngFor="let cartproduct of cartProducts">
     <td>{{ cartproduct.product.name }}</td>
-    <td>{{ cartproduct.product.price }}</td>
+    <td>{{ cartproduct.product.price | currency:'USD':true:'1.2-2' }}</td>
     <td>{{ cartproduct.quantity }}</td>
-    <td>{{ cartproduct.product.price * cartproduct.quantity }}</td>
+    <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>
   </tr>
   </tbody>
   <tfoot>
     <td></td>
     <td></td>
     <td>Сумма:</td>
-    <td>{{ getTotalSum() }}</td>
+    <td>{{ getTotalSum() | currency:'USD':true:'1.2-2' }}</td>
   </tfoot>
 </table>
