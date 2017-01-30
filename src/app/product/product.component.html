@@ -11,7 +11,7 @@
  <div class="meta">{{ product.description }}</div>
   <ul class="ui big horizontal list voters">
     <li class="item">
-      Цена: {{ product.price }}
+      Цена: {{ product.price | currency:'USD':true:'1.2-2' }}
     </li>
     <li class="item">
       Есть на складе: {{ product.quantity }}

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProductsComponent } from './products/products.component';
-import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
+import { ShopingCartComponent } from './shopping-cart/shopping-cart.component';
 
 export const APP_ROUTES: Routes = [
     {

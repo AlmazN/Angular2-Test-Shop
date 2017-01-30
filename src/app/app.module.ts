@@ -13,8 +13,8 @@ import { ProductComponent } from './product/product.component';
 import { QuantityFilterPipe } from './_pipes/quantity-filter.pipe';
 import { PopupComponent } from './popup/popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
-import { ShopingCartService } from './_services/shoping-cart.service';
+import { ShopingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShopingCartService } from './_services/shopping-cart.service';
 
 @NgModule({
   declarations: [

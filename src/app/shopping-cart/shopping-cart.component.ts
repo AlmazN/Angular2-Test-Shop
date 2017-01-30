@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopingCartService } from '../_services/shoping-cart.service';
+import { ShopingCartService } from '../_services/shopping-cart.service';
 import { Product } from '../_models/product.model';
 import { CartProduct } from '../_models/cart-product.model';
 
 @Component({
   selector: 'app-shoping-cart',
-  templateUrl: './shoping-cart.component.html',
-  styleUrls: ['./shoping-cart.component.css']
+  templateUrl: './shopping-cart.component.html',
+  styleUrls: ['./shopping-cart.component.css']
 })
 export class ShopingCartComponent implements OnInit {
   cartProducts: CartProduct[];
