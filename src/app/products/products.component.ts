@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Product } from '../_models/product.model';
 import { ProductsService } from '../_services/products.service';
+import { PopupService } from '../_services/popup.service';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   pending: boolean;
   
-  constructor (private productsService: ProductsService) {
+  constructor (private productsService: ProductsService, private popupService: PopupService) {
   }
 
   getProducts(): void {
@@ -24,6 +25,9 @@ export class ProductsComponent implements OnInit {
       {
         this.pending = false;
         this.products = products;
+        this.popupService.doShow({
+          text: 'Got product!'
+        });
       }, err => {
         this.pending = false;
         console.log('Проблемы с получением списка товаров. Текст ошибки: \n' + err);

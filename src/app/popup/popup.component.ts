@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Popup } from '../_models/popup.model';
+import { PopupService } from '../_services/popup.service';
 
 @Component({
   selector: 'app-popup',
@@ -9,31 +10,13 @@ import { Popup } from '../_models/popup.model';
   }
 })
 export class PopupComponent implements OnInit {
-  private data: Popup[] = [];
 
+  popupData: Popup[] = [];
 
-  doShow(settings: Popup): void {
-    let popup = new Popup(settings);
-    this.data.push(popup);
-    if(popup.delay) {
-      popup.timeoutID = setTimeout(() => {
-        let index = this.data.indexOf(popup);
-        if(index > -1) {
-          this.data.splice(index, 1);
-        }
-      }, popup.delay);
-    }
-  }
-
-  closePopup(popup: Popup) {
-    let index = this.data.indexOf(popup);
-    if(index > -1) {
-      this.data.splice(index, 1);
-    }
-
-    if(popup.delay) {
-      clearTimeout(popup.timeoutID);
-    }
+  constructor(private popupService: PopupService) {
+    popupService.dataChange$.subscribe(data => {
+      this.popupData = data;
+    });
   }
 
   ngOnInit() {

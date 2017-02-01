@@ -15,6 +15,7 @@ import { PopupComponent } from './popup/popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShopingCartService } from './_services/shopping-cart.service';
+import { PopupService } from './_services/popup.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ShopingCartService } from './_services/shopping-cart.service';
     FormsModule,
     HttpModule
   ],
-  providers: [ShopingCartService],
+  providers: [ShopingCartService, PopupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
