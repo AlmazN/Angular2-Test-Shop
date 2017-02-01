@@ -12,11 +12,16 @@ import { PopupService } from '../_services/popup.service';
 export class PopupComponent implements OnInit {
 
   popupData: Popup[] = [];
+  popup: Popup;
 
   constructor(private popupService: PopupService) {
     popupService.dataChange$.subscribe(data => {
       this.popupData = data;
     });
+  }
+
+  closePopup() {
+    this.popupService.closePopup(this.popup);
   }
 
   ngOnInit() {
