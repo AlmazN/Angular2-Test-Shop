@@ -12,7 +12,6 @@ import { PopupService } from '../_services/popup.service';
 export class PopupComponent implements OnInit {
 
   popupData: Popup[] = [];
-  popup: Popup;
 
   constructor(private popupService: PopupService) {
     popupService.dataChange$.subscribe(data => {
@@ -20,8 +19,8 @@ export class PopupComponent implements OnInit {
     });
   }
 
-  closePopup() {
-    this.popupService.closePopup(this.popup);
+  closePopup(popup: Popup) {
+    this.popupService.closePopup(popup);
   }
 
   ngOnInit() {

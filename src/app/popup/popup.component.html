@@ -1,4 +1,4 @@
 <ngb-alert *ngFor="let popup of popupData" 
 type="{{ popup.type }}"
 [dismissible]="popup.dismissible" 
-(close)="closePopup()">{{ popup.text }}</ngb-alert>
+(close)="closePopup(this.popup)">{{ popup.text }}</ngb-alert>

@@ -9,10 +9,9 @@ export class Popup {
   timeoutID?: any = null;
 
   constructor(popup: Popup) {
-    this.type = types.indexOf(popup.type) === -1 ? defaultType : popup.type;
-    this.text = popup.text;
-    this.dismissible = popup.dismissible;
-    this.delay = popup.delay;
-    this.timeoutID = null;
+    Object.assign(this, popup);
+    if(types.indexOf(this.type) === -1) {
+      this.type = defaultType;
+    }
   }  
 }
