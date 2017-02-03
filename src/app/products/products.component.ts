@@ -25,11 +25,6 @@ export class ProductsComponent implements OnInit {
       {
         this.pending = false;
         this.products = products;
-        this.popupService.doShow({
-          text: 'Got product!',
-          delay: 10000,
-          type: 'success'
-        });
       }, err => {
         this.pending = false;
         console.log('Проблемы с получением списка товаров. Текст ошибки: \n' + err);

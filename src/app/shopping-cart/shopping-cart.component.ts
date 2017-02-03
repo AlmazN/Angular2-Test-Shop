@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopingCartService } from '../_services/shopping-cart.service';
+import { PopupService } from '../_services/popup.service';
 import { Product } from '../_models/product.model';
 import { CartProduct } from '../_models/cart-product.model';
 
@@ -19,7 +20,14 @@ export class ShopingCartComponent implements OnInit {
     return totalSum;
   }
 
-  constructor(private cartService: ShopingCartService) { }
+  checkout() {
+    this.popupService.doShow({
+      text: 'This functionality is not implemented...',
+      type: 'warning'
+    });
+  }
+
+  constructor(private cartService: ShopingCartService, private popupService: PopupService) { }
 
   ngOnInit() {
     this.cartProducts = this.cartService.getCartProducts();
