@@ -11,7 +11,8 @@
       Products
     </a>
     <a routerLink="/cart" routerLinkActive="active" class="item">
-      Cart
+      Cart 
+      <span class="products-quantity" *ngIf="cartProductQuantity > 0">{{ cartProductQuantity }}</span>
     </a>
   </div>
 </div>

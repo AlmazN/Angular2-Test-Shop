@@ -62,3 +62,9 @@ ul.ui.list li:before {
   top: 5px;
   z-index: 999999;
 }
+
+.products-quantity {
+  margin-left: 0.5em;
+  color: black;
+  font-weight: bold;
+}
