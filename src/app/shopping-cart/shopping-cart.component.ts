@@ -27,6 +27,10 @@ export class ShopingCartComponent implements OnInit {
     });
   }
 
+  getProductsQuantity(): number {
+    return this.cartService.productsQuantity;
+  }
+
   constructor(private cartService: ShopingCartService, private popupService: PopupService) { }
 
   ngOnInit() {
