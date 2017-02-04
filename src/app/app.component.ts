@@ -1,6 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ShopingCartService } from './_services/shopping-cart.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
@@ -8,16 +6,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnDestroy {
-  subscription: Subscription;
-  cartProductQuantity: number;
+export class AppComponent {
 
-  constructor(private shopingCartService: ShopingCartService) {
-    this.subscription = this.shopingCartService.changeProductQuantity$
-    .subscribe(productQuantity => this.cartProductQuantity = productQuantity);
+  constructor() {
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }

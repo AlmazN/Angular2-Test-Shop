@@ -1,0 +1,18 @@
+<!-- Menu Bar -->
+<div class="ui menu">
+  <div class="ui container">
+    <a routerLink="/home" routerLinkActive="active" class="item">
+      Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active" class="item">
+      About
+    </a>
+    <a routerLink="/products" routerLinkActive="active" class="item">
+      Products
+    </a>
+    <a routerLink="/cart" routerLinkActive="active" class="item">
+      Cart 
+      <span class="products-quantity" *ngIf="cartProductQuantity > 0">{{ cartProductQuantity }}</span>
+    </a>
+  </div>
+</div>
