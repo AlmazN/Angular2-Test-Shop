@@ -1,5 +1,5 @@
-<div *ngIf="!getProductsQuantity()" class="center-block">В корзине пока нет товаров...</div>
-<div *ngIf="getProductsQuantity()">
+<div *ngIf="!cartProducts.length" class="center-block">В корзине пока нет товаров...</div>
+<div *ngIf="cartProducts.length">
   <table class="table">
     <thead>
       <tr>
@@ -15,7 +15,7 @@
         <td>{{ cartproduct.product.price | currency:'USD':true:'1.2-2' }}</td>
         <td><input type="number" 
         class="form-control" 
-        id="quantity" 
+        id="quantity{{ cartproduct.product.id }}"
         value="{{ cartproduct.quantity }}"
         required
         [(ngModel)]="cartproduct.quantity" name="quantity" #quantity="ngModel"

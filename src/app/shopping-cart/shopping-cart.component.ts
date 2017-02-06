@@ -26,11 +26,10 @@ export class ShopingCartComponent implements OnInit {
 
   cartProductsQuantityChanged(cartProduct: CartProduct) {
 
-    if(cartProduct.quantity > cartProduct.product.quantity) {
+    if(cartProduct.quantity >= cartProduct.product.quantity) {
       cartProduct.quantity = cartProduct.product.quantity;
+      (<HTMLInputElement>document.getElementById("quantity" + cartProduct.product.id)).value = '' + cartProduct.product.quantity;
     }
-
-    console.log(cartProduct);
 
     this.cartService.cartProductsQuantityChanged();
   }
@@ -40,10 +39,6 @@ export class ShopingCartComponent implements OnInit {
       text: 'This functionality is not implemented...',
       type: 'warning'
     });
-  }
-
-  getProductsQuantity(): number {
-    return this.cartService.productsQuantity;
   }
 
   constructor(private cartService: ShopingCartService, private popupService: PopupService) { }
