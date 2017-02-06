@@ -20,6 +20,21 @@ export class ShopingCartComponent implements OnInit {
     return totalSum;
   }
 
+  logout(item: any) {
+    console.log(item);
+  }
+
+  cartProductsQuantityChanged(cartProduct: CartProduct) {
+
+    if(cartProduct.quantity > cartProduct.product.quantity) {
+      cartProduct.quantity = cartProduct.product.quantity;
+    }
+
+    console.log(cartProduct);
+
+    this.cartService.cartProductsQuantityChanged();
+  }
+
   checkout() {
     this.popupService.doShow({
       text: 'This functionality is not implemented...',

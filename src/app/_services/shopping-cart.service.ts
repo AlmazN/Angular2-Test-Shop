@@ -17,8 +17,23 @@ export class ShopingCartService {
     } else {
       this.cartProducts.push(new CartProduct(product));
     }
-    this.productsQuantity++;
-    this.productQuantitySource.next(this.productsQuantity);
+    this.productQuantitySource.next(this.getCartProductsQunatity());
+  }
+
+  setCartProductQuantity(cartProduct: CartProduct, quantity: number) {
+
+  }
+
+  getCartProductsQunatity(): number {
+    this.productsQuantity = 0;
+    for (let product of this.cartProducts) {
+      this.productsQuantity += product.quantity
+    }
+    return this.productsQuantity;
+  }
+
+  cartProductsQuantityChanged() {
+    this.productQuantitySource.next(this.getCartProductsQunatity());
   }
 
   getCartProducts(): CartProduct[] {
