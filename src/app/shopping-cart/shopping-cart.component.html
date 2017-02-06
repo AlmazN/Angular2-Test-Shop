@@ -13,7 +13,16 @@
       <tr *ngFor="let cartproduct of cartProducts">
         <td>{{ cartproduct.product.name }}</td>
         <td>{{ cartproduct.product.price | currency:'USD':true:'1.2-2' }}</td>
-        <td>{{ cartproduct.quantity }}</td>
+        <td><input type="number" 
+        class="form-control" 
+        id="quantity" 
+        value="{{ cartproduct.quantity }}"
+        required
+        [(ngModel)]="cartproduct.quantity" name="quantity" #quantity="ngModel">
+        <div [hidden]="(quantity.valid || quantity.pristine) && quantity.value > 0"
+             class="alert alert-danger">
+          Quantity is required and must be more then zero
+        </div></td>
         <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>
       </tr>
     </tbody>
