@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ShopingCartService } from '../_services/shopping-cart.service';
 import { PopupService } from '../_services/popup.service';
 import { Product } from '../_models/product.model';
@@ -28,7 +28,7 @@ export class ShopingCartComponent implements OnInit {
 
     if(cartProduct.quantity >= cartProduct.product.quantity) {
       cartProduct.quantity = cartProduct.product.quantity;
-      (<HTMLInputElement>document.getElementById("quantity" + cartProduct.product.id)).value = '' + cartProduct.product.quantity;
+      this.elementRef.nativeElement.querySelector('#quantity' + cartProduct.product.id).value = '' + cartProduct.product.quantity;
     }
 
     this.cartService.cartProductsQuantityChanged();
@@ -41,7 +41,9 @@ export class ShopingCartComponent implements OnInit {
     });
   }
 
-  constructor(private cartService: ShopingCartService, private popupService: PopupService) { }
+  constructor(private cartService: ShopingCartService, 
+  private popupService: PopupService, 
+  private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.cartProducts = this.cartService.getCartProducts();
