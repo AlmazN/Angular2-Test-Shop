@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private shopingCartService: ShopingCartService) {
     this.subscription = this.shopingCartService.changeProductQuantity$
-    .debounceTime(300)
     .subscribe(productQuantity => this.cartProductQuantity = productQuantity);
   }
 

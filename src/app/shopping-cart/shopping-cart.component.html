@@ -18,7 +18,7 @@
         id="quantity{{ cartproduct.product.id }}"
         value="{{ cartproduct.quantity }}"
         required
-        [(ngModel)]="cartproduct.quantity" name="quantity" #quantity="ngModel"
+        [ngModel]="cartproduct.quantity" name="quantity" #quantity="ngModel"
         (ngModelChange)="cartProductsQuantityChanged(cartproduct)">
         <div [hidden]="(quantity.valid || quantity.pristine) && quantity.value > 0"
              class="alert alert-danger">

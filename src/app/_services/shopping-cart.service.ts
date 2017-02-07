@@ -20,10 +20,6 @@ export class ShopingCartService {
     this.productQuantitySource.next(this.getCartProductsQunatity());
   }
 
-  setCartProductQuantity(cartProduct: CartProduct, quantity: number) {
-
-  }
-
   getCartProductsQunatity(): number {
     this.productsQuantity = 0;
     for (let product of this.cartProducts) {
