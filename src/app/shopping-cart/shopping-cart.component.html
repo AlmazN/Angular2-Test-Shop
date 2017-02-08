@@ -20,10 +20,7 @@
         required
         [ngModel]="cartproduct.quantity" name="quantity" #quantity="ngModel"
         (ngModelChange)="cartProductsQuantityChanged(cartproduct)">
-        <div [hidden]="(quantity.valid || quantity.pristine) && quantity.value > 0"
-             class="alert alert-danger">
-          Quantity is required and must be more then zero
-        </div></td>
+        </td>
         <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>
       </tr>
     </tbody>

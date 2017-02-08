@@ -44,12 +44,18 @@ export class ShopingCartComponent implements OnInit {
     this.modelChanged
       .debounceTime(300)
       .subscribe(model => {
-        let quantity = this.elementRef.nativeElement.querySelector('#quantity' + model.product.id).value;
+        let element = this.elementRef.nativeElement.querySelector('#quantity' + model.product.id),
+            quantity = Number((element).value);
         if (quantity >= model.product.quantity) {
           model.quantity = model.product.quantity;
-          this.elementRef.nativeElement.querySelector('#quantity' + model.product.id).value = '' + model.product.quantity;
+          element.value = '' + model.product.quantity;
+        } else if(quantity <= 0) {
+          model.quantity = 1;
+          element.value = 1;
+          element.classList.remove('ng-invalid'); // add/remove ng-valid/invalid cause, Angular doesnt automatically set it for some reason
+          element.classList.add('ng-valid');
         } else {
-          model.quantity = Number(quantity);
+          model.quantity = quantity;
         }
         this.cartService.cartProductsQuantityChanged();
       });
