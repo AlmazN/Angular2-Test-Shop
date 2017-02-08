@@ -49,8 +49,14 @@ export class ShopingCartService {
     if (localStorage) {
       let cartProducts = JSON.parse(localStorage.getItem('cartProducts') || null) || [];
       this.cartProducts = cartProducts;
-      console.log(this.cartProducts);
+      setTimeout(() => 
+      this.productQuantitySource.next(this.getCartProductsQunatity())
+      , 0);
     }
+  }
+
+  fireQuantityChange() {
+    this.productQuantitySource.next(this.getCartProductsQunatity());
   }
 
   constructor() {

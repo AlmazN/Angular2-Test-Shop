@@ -13,15 +13,21 @@
       <tr *ngFor="let cartproduct of cartProducts">
         <td>{{ cartproduct.product.name }}</td>
         <td>{{ cartproduct.product.price | currency:'USD':true:'1.2-2' }}</td>
-        <td><input type="number" 
-        class="form-control" 
-        id="quantity{{ cartproduct.product.id }}"
-        value="{{ cartproduct.quantity }}"
-        required
-        [ngModel]="cartproduct.quantity" name="quantity" #quantity="ngModel"
-        (ngModelChange)="cartProductsQuantityChanged(cartproduct)">
+        <td>
+          <input 
+          type="number" 
+          class="form-control" 
+          id="quantity{{ cartproduct.product.id }}" 
+          value="{{ cartproduct.quantity }}"
+          [ngModel]="cartproduct.quantity" name="quantity" #quantity="ngModel" 
+          (ngModelChange)="cartProductsQuantityChanged(cartproduct)">
         </td>
         <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>
+        <td>
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
       </tr>
     </tbody>
     <tfoot>

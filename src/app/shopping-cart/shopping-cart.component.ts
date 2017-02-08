@@ -52,8 +52,6 @@ export class ShopingCartComponent implements OnInit {
         } else if(quantity <= 0) {
           model.quantity = 1;
           element.value = 1;
-          element.classList.remove('ng-invalid'); // add/remove ng-valid/invalid cause, Angular doesnt automatically set it for some reason
-          element.classList.add('ng-valid');
         } else {
           model.quantity = quantity;
         }
