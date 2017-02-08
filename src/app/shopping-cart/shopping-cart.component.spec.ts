@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ShopingCartComponent } from './shoping-cart.component';
+import { ShopingCartComponent } from './shopping-cart.component';
 
 describe('ShopingCartComponent', () => {
   let component: ShopingCartComponent;
