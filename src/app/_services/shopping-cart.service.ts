@@ -18,6 +18,7 @@ export class ShopingCartService {
       this.cartProducts.push(new CartProduct(product));
     }
     this.productQuantitySource.next(this.getCartProductsQunatity());
+    this.saveDataToLocalStorage();
   }
 
   getCartProductsQunatity(): number {
@@ -30,12 +31,30 @@ export class ShopingCartService {
 
   cartProductsQuantityChanged() {
     this.productQuantitySource.next(this.getCartProductsQunatity());
+    this.saveDataToLocalStorage();
   }
 
   getCartProducts(): CartProduct[] {
     return this.cartProducts;
   }
 
-  constructor() { }
+  saveDataToLocalStorage() {
+    if (localStorage) {
+      let cartProducts = JSON.stringify(this.cartProducts);
+      localStorage.setItem('cartProducts', cartProducts);
+    }
+  }
+
+  retrieveDataFromLocalStorage() {
+    if (localStorage) {
+      let cartProducts = JSON.parse(localStorage.getItem('cartProducts') || null) || [];
+      this.cartProducts = cartProducts;
+      console.log(this.cartProducts);
+    }
+  }
+
+  constructor() {
+    this.retrieveDataFromLocalStorage();
+  }
 
 }
