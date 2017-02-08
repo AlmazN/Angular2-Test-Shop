@@ -17,8 +17,17 @@ export class ShopingCartService {
     } else {
       this.cartProducts.push(new CartProduct(product));
     }
-    this.productQuantitySource.next(this.getCartProductsQunatity());
-    this.saveDataToLocalStorage();
+    this.cartProductsQuantityChanged();
+  }
+
+  removeCartProduct(cartProduct: CartProduct) {
+    let product = this.cartProducts.find(p => p.product.id === cartProduct.product.id);
+    this.cartProducts = this.cartProducts.filter(el => {
+      return el.product.id !== product.product.id;
+    });
+    this.cartProductsQuantityChanged();
+    console.log("cartProducts in ShopingCartService");
+    console.log(this.cartProducts);
   }
 
   getCartProductsQunatity(): number {

@@ -24,7 +24,7 @@
         </td>
         <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>
         <td>
-          <button type="button" class="close" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" (click)="removeProductFromCart(cartproduct)">
             <span aria-hidden="true">&times;</span>
           </button>
         </td>

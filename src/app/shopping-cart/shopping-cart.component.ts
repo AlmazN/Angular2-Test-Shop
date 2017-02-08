@@ -23,10 +23,6 @@ export class ShopingCartComponent implements OnInit {
     return totalSum;
   }
 
-  logout(item: any) {
-    console.log(item);
-  }
-
   cartProductsQuantityChanged(cartProduct: CartProduct) {
     this.modelChanged.next(cartProduct);
   }
@@ -36,6 +32,16 @@ export class ShopingCartComponent implements OnInit {
       text: 'This functionality is not implemented...',
       type: 'warning'
     });
+  }
+
+  removeProductFromCart(cartProduct: CartProduct) {
+    this.cartService.removeCartProduct(cartProduct);
+    let product = this.cartProducts.find(p => p.product.id === cartProduct.product.id);
+    this.cartProducts = this.cartProducts.filter(el => {
+      return el.product.id !== product.product.id;
+    });
+    console.log("cartProducts in ShopingCartComponent");
+    console.log(this.cartProducts);
   }
 
   constructor(private cartService: ShopingCartService,
