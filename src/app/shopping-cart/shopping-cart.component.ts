@@ -12,8 +12,8 @@ import { CartProduct } from '../_models/cart-product.model';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShopingCartComponent implements OnInit {
-  cartProducts: CartProduct[];
-  modelChanged: Subject<CartProduct> = new Subject<CartProduct>();
+  private cartProducts: CartProduct[];
+  private productQuantityChange: Subject<CartProduct> = new Subject<CartProduct>();
 
   getTotalSum() {
     let totalSum = 0;
@@ -24,7 +24,7 @@ export class ShopingCartComponent implements OnInit {
   }
 
   cartProductsQuantityChanged(cartProduct: CartProduct) {
-    this.modelChanged.next(cartProduct);
+    this.productQuantityChange.next(cartProduct);
   }
 
   checkout() {
@@ -36,18 +36,13 @@ export class ShopingCartComponent implements OnInit {
 
   removeProductFromCart(cartProduct: CartProduct) {
     this.cartService.removeCartProduct(cartProduct);
-    let product = this.cartProducts.find(p => p.product.id === cartProduct.product.id);
-    this.cartProducts = this.cartProducts.filter(el => {
-      return el.product.id !== product.product.id;
-    });
-    console.log("cartProducts in ShopingCartComponent");
-    console.log(this.cartProducts);
+    this.cartProducts = this.cartService.getCartProducts();
   }
 
   constructor(private cartService: ShopingCartService,
     private popupService: PopupService,
     private elementRef: ElementRef) {
-    this.modelChanged
+    this.productQuantityChange
       .debounceTime(300)
       .subscribe(model => {
         let element = this.elementRef.nativeElement.querySelector('#quantity' + model.product.id),

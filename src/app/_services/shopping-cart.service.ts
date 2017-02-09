@@ -26,8 +26,6 @@ export class ShopingCartService {
       return el.product.id !== product.product.id;
     });
     this.cartProductsQuantityChanged();
-    console.log("cartProducts in ShopingCartService");
-    console.log(this.cartProducts);
   }
 
   getCartProductsQunatity(): number {
