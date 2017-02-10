@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class CartProduct {
     product: Product;
-    private _quantitySource? = new BehaviorSubject<number>(0);
+    private _quantitySource? = new BehaviorSubject<number>(1);
     quantity$ = this._quantitySource.asObservable();
 
     get quantity(): number {

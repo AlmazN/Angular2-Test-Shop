@@ -20,6 +20,22 @@ export class ShopingCartService {
     this.cartProductsQuantityChanged();
   }
 
+  addNewCartProduct(product: Product) {
+    let cartProduct = new CartProduct(product);
+    this.cartProducts.push(cartProduct);
+    cartProduct.quantity$.subscribe(quantity => {
+      let totalQuantity = this.getTotalQuantity(quantity);
+      
+    });
+  }
+
+  private getTotalQuantity(initialValue): number {
+    let totalQuantity = this.cartProducts.reduce((previousValue, currentValue, index, array) => {
+      return previousValue.quantity + currentValue.quantity;
+    }, initialValue);
+    return totalQuantity;
+  }
+
   removeCartProduct(cartProduct: CartProduct) {
     let product = this.cartProducts.find(p => p.product.id === cartProduct.product.id);
     this.cartProducts = this.cartProducts.filter(el => {
