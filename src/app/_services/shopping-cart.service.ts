@@ -15,24 +15,23 @@ export class ShopingCartService {
     if (found) {
       found.quantity++;
     } else {
-      this.cartProducts.push(new CartProduct(product));
+      this.addNewCartProduct(product);
     }
-    this.cartProductsQuantityChanged();
   }
 
-  addNewCartProduct(product: Product) {
+  private addNewCartProduct(product: Product) {
     let cartProduct = new CartProduct(product);
     this.cartProducts.push(cartProduct);
-    cartProduct.quantity$.subscribe(quantity => {
-      let totalQuantity = this.getTotalQuantity(quantity);
-      
+    cartProduct.quantity$.subscribe(() => {
+      this.productsQuantity = this.getTotalQuantity();
+      this.productQuantitySource.next(this.productsQuantity);
     });
   }
 
-  private getTotalQuantity(initialValue): number {
-    let totalQuantity = this.cartProducts.reduce((previousValue, currentValue, index, array) => {
-      return previousValue.quantity + currentValue.quantity;
-    }, initialValue);
+  private getTotalQuantity():number {
+    let totalQuantity = this.cartProducts.reduce((previousValue, currentValue) => {
+      return previousValue + currentValue.quantity;
+    }, 0);
     return totalQuantity;
   }
 
@@ -44,16 +43,8 @@ export class ShopingCartService {
     this.cartProductsQuantityChanged();
   }
 
-  getCartProductsQunatity(): number {
-    this.productsQuantity = 0;
-    for (let product of this.cartProducts) {
-      this.productsQuantity += product.quantity
-    }
-    return this.productsQuantity;
-  }
-
   cartProductsQuantityChanged() {
-    this.productQuantitySource.next(this.getCartProductsQunatity());
+    this.productQuantitySource.next(this.getTotalQuantity());
     this.saveDataToLocalStorage();
   }
 
@@ -73,13 +64,13 @@ export class ShopingCartService {
       let cartProducts = JSON.parse(localStorage.getItem('cartProducts') || null) || [];
       this.cartProducts = cartProducts;
       setTimeout(() => 
-      this.productQuantitySource.next(this.getCartProductsQunatity())
+      this.productQuantitySource.next(this.getTotalQuantity())
       , 0);
     }
   }
 
   fireQuantityChange() {
-    this.productQuantitySource.next(this.getCartProductsQunatity());
+    this.productQuantitySource.next(this.getTotalQuantity());
   }
 
   constructor() {
