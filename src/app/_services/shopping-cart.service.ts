@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 export class ShopingCartService {
   private cartProducts: CartProduct[] = [];
   productsQuantity: number = 0;
+  private totalPrice: number = this.getTotalPrice();
   productQuantitySource = new Subject<number>();
   changeProductQuantity$ = this.productQuantitySource.asObservable();
 
@@ -22,7 +23,7 @@ export class ShopingCartService {
   private addNewCartProduct(product: Product) {
     let cartProduct = new CartProduct(product);
     this.cartProducts.push(cartProduct);
-    cartProduct.quantity$.subscribe(() => {
+    cartProduct.quantity$.subscribe(newQuantity => {
       this.productsQuantity = this.getTotalQuantity();
       this.productQuantitySource.next(this.productsQuantity);
     });
@@ -33,6 +34,13 @@ export class ShopingCartService {
       return previousValue + currentValue.quantity;
     }, 0);
     return totalQuantity;
+  }
+
+  getTotalPrice():number {
+    let totalPrice = this.cartProducts.reduce((previousValue, currentValue) => {
+      return previousValue + (currentValue.quantity * Number(currentValue.product.price));
+    }, 0);
+    return totalPrice;
   }
 
   removeCartProduct(cartProduct: CartProduct) {
