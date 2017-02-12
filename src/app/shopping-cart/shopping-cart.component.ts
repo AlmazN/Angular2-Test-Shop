@@ -14,6 +14,7 @@ import { CartProduct } from '../_models/cart-product.model';
 export class ShopingCartComponent implements OnInit {
   private cartProducts: CartProduct[];
   private productQuantityChange: Subject<CartProduct> = new Subject<CartProduct>();
+  totalPrice: number = this.cartService.getTotalPrice();
 
   getTotalSum() {
     let totalSum = 0;
@@ -21,6 +22,10 @@ export class ShopingCartComponent implements OnInit {
       totalSum += Number(cartProduct.product.price) * cartProduct.quantity;
     }
     return totalSum;
+  }
+
+  onQuantityChanged() {
+    this.totalPrice = this.cartService.getTotalPrice(true);
   }
 
   cartProductsQuantityChanged(cartProduct: CartProduct) {

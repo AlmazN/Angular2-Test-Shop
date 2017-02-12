@@ -6,8 +6,8 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class ShopingCartService {
   private cartProducts: CartProduct[] = [];
-  productsQuantity: number = 0;
-  private totalPrice: number = this.getTotalPrice();
+  private totalQuantity: number = 0;
+  private totalPrice: number = 0;
   productQuantitySource = new Subject<number>();
   changeProductQuantity$ = this.productQuantitySource.asObservable();
 
@@ -24,8 +24,9 @@ export class ShopingCartService {
     let cartProduct = new CartProduct(product);
     this.cartProducts.push(cartProduct);
     cartProduct.quantity$.subscribe(newQuantity => {
-      this.productsQuantity = this.getTotalQuantity();
-      this.productQuantitySource.next(this.productsQuantity);
+      this.totalQuantity = this.getTotalQuantity();
+      this.totalPrice = this.getTotalPrice();
+      this.productQuantitySource.next(this.totalQuantity);
     });
   }
 
@@ -36,11 +37,15 @@ export class ShopingCartService {
     return totalQuantity;
   }
 
-  getTotalPrice():number {
-    let totalPrice = this.cartProducts.reduce((previousValue, currentValue) => {
+  getTotalPrice(doNotCalculate: boolean = false):number {
+    if(doNotCalculate) {
+      return this.totalPrice;
+    } else {
+      let totalPrice = this.cartProducts.reduce((previousValue, currentValue) => {
       return previousValue + (currentValue.quantity * Number(currentValue.product.price));
     }, 0);
     return totalPrice;
+    }
   }
 
   removeCartProduct(cartProduct: CartProduct) {
