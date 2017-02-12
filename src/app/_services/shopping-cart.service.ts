@@ -38,15 +38,11 @@ export class ShopingCartService {
   }
 
   getTotalPrice(doNotCalculate: boolean = false):number {
-    if(doNotCalculate) {
-      return this.totalPrice;
-    } else {
-      let totalPrice = this.cartProducts.reduce((previousValue, currentValue) => {
-      return previousValue + (currentValue.quantity * Number(currentValue.product.price));
+    return doNotCalculate ? this.totalPrice : this.cartProducts.reduce((value, cartProduct) => {
+      return value + (cartProduct.quantity * Number(cartProduct.product.price));
     }, 0);
-    return totalPrice;
-    }
   }
+
 
   removeCartProduct(cartProduct: CartProduct) {
     let product = this.cartProducts.find(p => p.product.id === cartProduct.product.id);

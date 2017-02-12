@@ -11,6 +11,11 @@ export class CartProduct {
     }
 
     set quantity(newQuantity: number) {
+        if(!Number(newQuantity)) {
+            this.quantity = 0;
+        } else if(Number(newQuantity) > this.product.quantity) {
+            this.quantity = this.product.quantity;
+        }
         this._quantitySource.next(newQuantity);
     }
 

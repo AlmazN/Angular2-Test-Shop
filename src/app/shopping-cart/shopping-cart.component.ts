@@ -28,10 +28,6 @@ export class ShopingCartComponent implements OnInit {
     this.totalPrice = this.cartService.getTotalPrice(true);
   }
 
-  cartProductsQuantityChanged(cartProduct: CartProduct) {
-    this.productQuantityChange.next(cartProduct);
-  }
-
   checkout() {
     this.popupService.doShow({
       text: 'This functionality is not implemented...',
@@ -42,27 +38,12 @@ export class ShopingCartComponent implements OnInit {
   removeProductFromCart(cartProduct: CartProduct) {
     this.cartService.removeCartProduct(cartProduct);
     this.cartProducts = this.cartService.getCartProducts();
+    this.totalPrice = this.cartService.getTotalPrice(true);
   }
 
   constructor(private cartService: ShopingCartService,
     private popupService: PopupService,
     private elementRef: ElementRef) {
-    this.productQuantityChange
-      .debounceTime(300)
-      .subscribe(model => {
-        let element = this.elementRef.nativeElement.querySelector('#quantity' + model.product.id),
-            quantity = Number((element).value);
-        if (quantity >= model.product.quantity) {
-          model.quantity = model.product.quantity;
-          element.value = '' + model.product.quantity;
-        } else if(quantity <= 0) {
-          model.quantity = 1;
-          element.value = 1;
-        } else {
-          model.quantity = quantity;
-        }
-        this.cartService.cartProductsQuantityChanged();
-      });
   }
 
   ngOnInit() {

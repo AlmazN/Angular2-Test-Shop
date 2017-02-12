@@ -20,7 +20,7 @@
           id="quantity{{ cartproduct.product.id }}" 
           value="{{ cartproduct.quantity }}"
           [ngModel]="cartproduct.quantity" name="quantity" #quantity="ngModel" 
-          (ngModelChange)="cartProductsQuantityChanged(cartproduct)">
+          (ngModelChange)="onQuantityChanged()">
         </td>
         <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>
         <td>
