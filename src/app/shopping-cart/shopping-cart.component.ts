@@ -16,16 +16,9 @@ export class ShopingCartComponent implements OnInit {
   private productQuantityChange: Subject<CartProduct> = new Subject<CartProduct>();
   totalPrice: number = this.cartService.getTotalPrice();
 
-  getTotalSum() {
-    let totalSum = 0;
-    for (let cartProduct of this.cartProducts) {
-      totalSum += Number(cartProduct.product.price) * cartProduct.quantity;
-    }
-    return totalSum;
-  }
-
-  onQuantityChanged() {
+  onQuantityChanged(cartProduct: CartProduct) {
     this.totalPrice = this.cartService.getTotalPrice(true);
+    this.elementRef.nativeElement.querySelector('#quantity' + cartProduct.product.id).value = cartProduct.quantity;
   }
 
   checkout() {

@@ -20,7 +20,7 @@
           id="quantity{{ cartproduct.product.id }}" 
           value="{{ cartproduct.quantity }}"
           [ngModel]="cartproduct.quantity" name="quantity" #quantity="ngModel" 
-          (ngModelChange)="onQuantityChanged()">
+          (ngModelChange)="onQuantityChanged(cartproduct)">
         </td>
         <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>
         <td>
@@ -34,7 +34,7 @@
       <td></td>
       <td></td>
       <td>Сумма:</td>
-      <td>{{ getTotalSum() | currency:'USD':true:'1.2-2' }}</td>
+      <td>{{ totalPrice | currency:'USD':true:'1.2-2' }}</td>
     </tfoot>
   </table>
   <button type="button" class="btn btn-success btn-lg float-right" (click)="checkout()">Checkout</button>
