@@ -19,7 +19,6 @@ export class ShopingCartComponent implements OnInit {
   onQuantityChanged(cartProduct: CartProduct) {
     this.totalPrice = this.cartService.getTotalPrice(true);
     this.elementRef.nativeElement.querySelector('#quantity' + cartProduct.product.id).value = cartProduct.quantity;
-    console.log(cartProduct);
   }
 
   checkout() {
