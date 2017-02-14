@@ -20,21 +20,21 @@ export class ShopingCartService {
     }
   }
 
-  private addNewCartProduct(product: Product) {
-    let cartProduct = new CartProduct(product);
+  private addNewCartProduct(product: Product, quantity: number = 1) {
+    let cartProduct = new CartProduct(product, quantity);
     this.cartProducts.push(cartProduct);
     cartProduct.quantity$.subscribe(newQuantity => {
       this.totalQuantity = this.getTotalQuantity();
       this.totalPrice = this.getTotalPrice();
       this.productQuantitySource.next(this.totalQuantity);
+      this.saveDataToLocalStorage();
     });
   }
 
-  private getTotalQuantity():number {
-    let totalQuantity = this.cartProducts.reduce((previousValue, currentValue) => {
-      return previousValue + currentValue.quantity;
+  private getTotalQuantity(doNotCalculate: boolean = false):number {
+    return doNotCalculate ? this.totalQuantity : this.cartProducts.reduce((value, cartProduct) => {
+      return value + cartProduct.quantity;
     }, 0);
-    return totalQuantity;
   }
 
   getTotalPrice(doNotCalculate: boolean = false):number {
@@ -75,11 +75,16 @@ export class ShopingCartService {
   }
 
   restoreDataFromLocalStorage() {
-
+    if(localStorage) {
+      let restoredData = JSON.parse(localStorage.getItem('cartProducts') || null) || [];
+      restoredData.map(currentElement => {
+        this.addNewCartProduct(currentElement.product, currentElement.quantity);
+      });
+    }
   }
 
   fireQuantityChange() {
-    this.productQuantitySource.next(this.getTotalQuantity());
+    this.productQuantitySource.next(this.getTotalQuantity(true));
   }
 
   constructor() {

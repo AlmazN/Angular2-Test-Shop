@@ -20,8 +20,8 @@ export class CartProduct {
         this._quantitySource.next(value);
     }
 
-    constructor(product: Product) {
+    constructor(product: Product, quantity: number = 1) {
         this.product = product;
-        this.quantity = 1;
+        this._quantitySource.next(quantity);
     }
 }
