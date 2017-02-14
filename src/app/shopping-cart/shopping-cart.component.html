@@ -18,8 +18,7 @@
           type="number" 
           class="form-control" 
           id="quantity{{ cartproduct.product.id }}" 
-          value="{{ cartproduct.quantity }}"
-          [ngModel]="cartproduct.quantity" name="quantity" #quantity="ngModel" 
+          [(ngModel)]="cartproduct.quantity" name="quantity" #quantity="ngModel" 
           (ngModelChange)="onQuantityChanged(cartproduct)">
         </td>
         <td>{{ cartproduct.product.price * cartproduct.quantity | currency:'USD':true:'1.2-2' }}</td>

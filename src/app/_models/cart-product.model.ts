@@ -10,13 +10,14 @@ export class CartProduct {
         return this._quantitySource.getValue();
     }
 
-    set quantity(newQuantity: number) {
-        if(!Number(newQuantity)) {
-            this.quantity = 0;
-        } else if(Number(newQuantity) > this.product.quantity) {
-            this.quantity = this.product.quantity;
+    set quantity(value: number) {
+        value = Number(value);
+        if(isNaN(value)) {
+            value = 0;
+        } else if(value > this.product.quantity) {
+            value = this.product.quantity;
         }
-        this._quantitySource.next(newQuantity);
+        this._quantitySource.next(value);
     }
 
     constructor(product: Product) {
