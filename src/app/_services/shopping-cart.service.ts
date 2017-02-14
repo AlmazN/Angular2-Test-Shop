@@ -24,11 +24,15 @@ export class ShopingCartService {
     let cartProduct = new CartProduct(product, quantity);
     this.cartProducts.push(cartProduct);
     cartProduct.quantity$.subscribe(newQuantity => {
-      this.totalQuantity = this.getTotalQuantity();
-      this.totalPrice = this.getTotalPrice();
-      this.productQuantitySource.next(this.totalQuantity);
-      this.saveDataToLocalStorage();
+      this.processCartChanges();
     });
+  }
+
+  private processCartChanges() {
+    this.totalQuantity = this.getTotalQuantity();
+    this.totalPrice = this.getTotalPrice();
+    this.productQuantitySource.next(this.totalQuantity);
+    this.saveDataToLocalStorage();
   }
 
   private getTotalQuantity(doNotCalculate: boolean = false):number {
@@ -49,12 +53,7 @@ export class ShopingCartService {
     this.cartProducts = this.cartProducts.filter(el => {
       return el.product.id !== product.product.id;
     });
-    this.cartProductsQuantityChanged();
-  }
-
-  cartProductsQuantityChanged() {
-    this.productQuantitySource.next(this.getTotalQuantity());
-    this.saveDataToLocalStorage();
+    this.processCartChanges();
   }
 
   getCartProducts(): CartProduct[] {
