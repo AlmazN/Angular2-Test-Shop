@@ -1,8 +1,10 @@
 import { Product } from './product.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subscription } from 'rxjs/Subscription';
 
 export class CartProduct {
     product: Product;
+    public quantitySubscription: Subscription;
     private _quantitySource? = new BehaviorSubject<number>(0);
     quantity$ = this._quantitySource.asObservable();
 

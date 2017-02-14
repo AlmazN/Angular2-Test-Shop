@@ -23,7 +23,7 @@ export class ShopingCartService {
   private addNewCartProduct(product: Product, quantity: number = 1) {
     let cartProduct = new CartProduct(product, quantity);
     this.cartProducts.push(cartProduct);
-    cartProduct.quantity$.subscribe(newQuantity => {
+    cartProduct.quantitySubscription = cartProduct.quantity$.subscribe(newQuantity => {
       this.processCartChanges();
     });
   }
@@ -54,6 +54,7 @@ export class ShopingCartService {
       return el.product.id !== product.product.id;
     });
     this.processCartChanges();
+    cartProduct.quantitySubscription.unsubscribe();
   }
 
   getCartProducts(): CartProduct[] {
