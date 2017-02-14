@@ -62,20 +62,20 @@ export class ShopingCartService {
   }
 
   saveDataToLocalStorage() {
+    let cartProducts;
     if (localStorage) {
-      let cartProducts = JSON.stringify(this.cartProducts);
-      localStorage.setItem('cartProducts', cartProducts);
+      cartProducts = this.cartProducts.map(currentElement => {
+        return {
+          product: currentElement.product,
+          quantity: currentElement.quantity
+        }
+      });
+      localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
     }
   }
 
-  retrieveDataFromLocalStorage() {
-    if (localStorage) {
-      let cartProducts = JSON.parse(localStorage.getItem('cartProducts') || null) || [];
-      this.cartProducts = cartProducts;
-      setTimeout(() => 
-      this.productQuantitySource.next(this.getTotalQuantity())
-      , 0);
-    }
+  restoreDataFromLocalStorage() {
+
   }
 
   fireQuantityChange() {
@@ -83,7 +83,7 @@ export class ShopingCartService {
   }
 
   constructor() {
-    this.retrieveDataFromLocalStorage();
+    this.restoreDataFromLocalStorage();
   }
 
 }
