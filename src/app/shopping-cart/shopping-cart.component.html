@@ -3,10 +3,10 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Имя товара</th>
-        <th>Цена товара</th>
-        <th>Количество</th>
-        <th>Сумма</th>
+        <th>{{ 'Cart.productName' | translate }}</th>
+        <th>{{ 'Cart.productPrice' | translate }}</th>
+        <th>{{ 'Cart.productQuantity' | translate }}</th>
+        <th>{{ 'Cart.totalPrice' | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -32,10 +32,10 @@
     <tfoot>
       <td></td>
       <td></td>
-      <td>Сумма:</td>
+      <td>{{ 'Cart.totalPrice' | translate }}:</td>
       <td>{{ totalPrice | currency:'USD':true:'1.2-2' }}</td>
     </tfoot>
   </table>
-  <button type="button" class="btn btn-success btn-lg float-right" (click)="checkout()">Checkout</button>
+  <button type="button" class="btn btn-success btn-lg float-right" (click)="checkout()">{{ 'Cart.Checkout' | translate }}</button>
 </div>
-<a routerLink="/products" routerLinkActive="active" class="btn btn-success btn-lg">Перейти в каталог</a>
+<a routerLink="/products" routerLinkActive="active" class="btn btn-success btn-lg">{{ 'Cart.catalogLink' | translate }}</a>

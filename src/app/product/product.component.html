@@ -11,13 +11,13 @@
  <div class="meta">{{ product.description }}</div>
   <ul class="ui big horizontal list voters">
     <li class="item">
-      Цена: {{ product.price | currency:'USD':true:'1.2-2' }}
+      {{ 'Product.Price' | translate }}: {{ product.price | currency:'USD':true:'1.2-2' }}
     </li>
     <li class="item">
-      Есть на складе: {{ product.quantity }}
+      {{ 'Product.Quantity' | translate }}: {{ product.quantity }}
     </li>
   </ul>
   <div>
-    <button type="button" class="btn btn-success" (click)="addToCart()">Add To Cart</button>
+    <button type="button" class="btn btn-success" (click)="addToCart()">{{ 'Product.addToCart' | translate }}</button>
   </div>
 </div>

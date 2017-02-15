@@ -2,16 +2,16 @@
 <div class="ui menu">
   <div class="ui container">
     <a routerLink="/home" routerLinkActive="active" class="item">
-      Home
+      {{ 'Home.menuTitle' | translate }}
     </a>
     <a routerLink="/about" routerLinkActive="active" class="item">
-      About
+      {{ 'AboutUs.menuTitle' | translate }}
     </a>
     <a routerLink="/products" routerLinkActive="active" class="item">
-      Products
+      {{ 'Catalog.menuTitle' | translate }}
     </a>
     <a routerLink="/cart" routerLinkActive="active" class="item">
-      Cart 
+      {{ 'Cart.menuTitle' | translate }} 
       <span class="products-quantity" *ngIf="cartProductQuantity > 0">{{ cartProductQuantity }}</span>
     </a>
   </div>

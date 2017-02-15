@@ -1,0 +1,26 @@
+{
+    "Home": {
+        "menuTitle": "Home"
+    },
+    "AboutUs": {
+        "menuTitle": "About Us"
+    },
+    "Catalog": {
+        "menuTitle": "Catalog",
+        "pendingMessage": "Getting products. Please wait..."
+    },
+    "Product": {
+        "Price": "Price",
+        "Quantity": "Available quantity",
+        "addToCart": "Add to Cart"
+    },
+    "Cart": {
+        "menuTitle": "Cart",
+        "productName": "Product name",
+        "productPrice": "Product price",
+        "productQuantity": "Quantity",
+        "totalPrice": "Total",
+        "Checkout": "Checkout",
+        "catalogLink": "Go to Catalog"
+    }
+}

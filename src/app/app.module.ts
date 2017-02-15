@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from 'ng2-translate';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -35,7 +36,8 @@ import { HeaderComponent } from './header/header.component';
     NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    TranslateModule.forRoot()
   ],
   providers: [ShopingCartService, PopupService],
   bootstrap: [AppComponent]
