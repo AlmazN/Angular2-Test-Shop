@@ -14,5 +14,13 @@
       {{ 'Cart.menuTitle' | translate }} 
       <span class="products-quantity" *ngIf="cartProductQuantity > 0">{{ cartProductQuantity }}</span>
     </a>
+    <div class="btn-group" dropdown>
+      <button id="simple-dropdown" class="btn item" dropdownToggle>
+        Button dropdown
+      </button>
+      <ul dropdownMenu role="menu" class="dropdown-menu" aria-labelledby="simple-dropdown">
+        <li *ngFor="let lang of translate.getLangs()">{{ lang }}</li>
+      </ul>
+    </div>
   </div>
 </div>

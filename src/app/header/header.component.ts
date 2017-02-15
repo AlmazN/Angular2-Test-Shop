@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShopingCartService } from '../_services/shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from 'ng2-translate';
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   cartProductQuantity: number;
 
-  constructor(private shopingCartService: ShopingCartService) {
+  constructor(private shopingCartService: ShopingCartService, private translate: TranslateService) {
     this.subscription = this.shopingCartService.changeProductQuantity$
     .subscribe(productQuantity => this.cartProductQuantity = productQuantity);
   }
