@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from 'ng2-translate';
+import { TranslateModule, TranslateLoader } from 'ng2-translate';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,10 @@ import { ShopingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShopingCartService } from './_services/shopping-cart.service';
 import { PopupService } from './_services/popup.service';
 import { HeaderComponent } from './header/header.component';
+
+export function HttpLoaderFactory(http: Http) {
+    return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
+}
 
 @NgModule({
   declarations: [
@@ -38,7 +43,11 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    TranslateModule.forRoot(),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [Http]
+    }),
     NgbDropdownModule.forRoot()
   ],
   providers: [ShopingCartService, PopupService],
