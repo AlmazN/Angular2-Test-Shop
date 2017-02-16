@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { TranslateService, LangChangeEvent } from 'ng2-translate';
+import { Subscription } from 'rxjs';
 import { Product } from '../_models/product.model';
 import { ProductsService } from '../_services/products.service';
 import { PopupService } from '../_services/popup.service';
@@ -11,14 +12,15 @@ import { PopupService } from '../_services/popup.service';
   providers: [ProductsService]
 })
 
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   pending: boolean;
+  translateSub: Subscription;
   
   constructor (private productsService: ProductsService, 
               private popupService: PopupService,
               private translate: TranslateService) {
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    this.translateSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.getProducts(event.lang);
     });
   }
@@ -41,4 +43,7 @@ export class ProductsComponent implements OnInit {
     this.getProducts(this.translate.currentLang);
   }
 
+  ngOnDestroy(): void {
+    this.translateSub.unsubscribe();
+  }
 }
