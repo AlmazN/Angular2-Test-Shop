@@ -9,11 +9,14 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class ProductsService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    
+  }
 
-  private productsURL = '/api/products';
+  private productsURL;
 
-  getProducts(): Observable<Product[]> {
+  getProducts(lang: String): Observable<Product[]> {
+    this.productsURL = `/api/products?lang=${lang}`;
 
     return this.http.get(this.productsURL)
       .map((res: Response) => res.json())

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { TranslateService, LangChangeEvent } from 'ng2-translate';
 import { Product } from '../_models/product.model';
 import { ProductsService } from '../_services/products.service';
 import { PopupService } from '../_services/popup.service';
@@ -14,13 +15,18 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   pending: boolean;
   
-  constructor (private productsService: ProductsService, private popupService: PopupService) {
+  constructor (private productsService: ProductsService, 
+              private popupService: PopupService,
+              private translate: TranslateService) {
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.getProducts(event.lang);
+    });
   }
 
-  getProducts(): void {
+  getProducts(lang: String): void {
     this.pending = true;
     this.productsService
-      .getProducts()
+      .getProducts(lang)
       .subscribe(products => 
       {
         this.pending = false;
@@ -32,7 +38,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.getProducts(this.translate.currentLang);
   }
 
 }
