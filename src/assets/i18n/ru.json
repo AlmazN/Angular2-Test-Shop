@@ -16,11 +16,15 @@
     },
     "Cart": {
         "menuTitle": "Корзина",
+        "noProdMsg": "В корзине нет товаров...",
         "productName": "Имя товара",
         "productPrice": "Цена товара",
         "productQuantity": "Количество",
         "totalPrice": "Сумма",
         "Checkout": "Оформить заказ",
         "catalogLink": "Перейти в каталог"
+    },
+    "Lang": {
+        "currentLang": "Русский"
     }
 }

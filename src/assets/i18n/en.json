@@ -16,11 +16,15 @@
     },
     "Cart": {
         "menuTitle": "Cart",
+        "noProdMsg": "No products in cart...",
         "productName": "Product name",
         "productPrice": "Product price",
         "productQuantity": "Quantity",
         "totalPrice": "Total",
         "Checkout": "Checkout",
         "catalogLink": "Go to Catalog"
+    },
+    "Lang": {
+        "currentLang": "English"
     }
 }

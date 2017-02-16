@@ -1,4 +1,4 @@
-<div *ngIf="!cartProducts.length" class="center-block">В корзине пока нет товаров...</div>
+<div *ngIf="!cartProducts.length" class="center-block">{{ 'Cart.noProdMsg' | translate }}</div>
 <div *ngIf="cartProducts.length">
   <table class="table">
     <thead>
