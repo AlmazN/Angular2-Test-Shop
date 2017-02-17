@@ -45,7 +45,19 @@ ul.ui.list li:before {
   width: 100%;
 }
 
-.loader-container, .loader-container > div {
+.center-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 999;
+}
+
+.loader-container {
+  position: relative;
+  left: -50%;
+}
+
+.loader-container > div {
   margin: auto;
 }
 
@@ -74,4 +86,8 @@ ul.ui.list li:before {
 }
 .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
+}
+
+.opacity50 {
+  opacity: .1;
 }

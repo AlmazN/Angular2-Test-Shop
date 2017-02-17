@@ -1,5 +1,5 @@
-var json_ru = require('./server/mock.products.ru.json');
-var json_en = require('./server/mock.products.en.json');
+var json_ru = require('./mock.products.ru.json');
+var json_en = require('./mock.products.en.json');
 
 var express = require('express');
 var app = express();

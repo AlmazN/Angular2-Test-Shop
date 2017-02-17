@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/debounceTime';
 import { ShopingCartService } from '../_services/shopping-cart.service';
 import { PopupService } from '../_services/popup.service';
 import { Product } from '../_models/product.model';

@@ -1,8 +1,10 @@
-<div class="ui grid posts">
+<div class="center-container">
 	<div class="loader-container" *ngIf="pending">
 		<div>{{ 'Catalog.pendingMessage' | translate }}</div>
 		<div class="loader"></div>
 	</div>
+	</div>
+<div class="ui grid posts products-container">
 	<app-product *ngFor="let product of products | quantityFilter"
 		[product]="product">
 	</app-product>

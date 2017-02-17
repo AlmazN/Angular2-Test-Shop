@@ -7,7 +7,7 @@
     },
     "Catalog": {
         "menuTitle": "Каталог",
-        "pendingMessage": "Получаем товары. Пожалуйста подождите..."
+        "pendingMessage": "Получаем товары..."
     },
     "Product": {
         "Price": "Цена",
