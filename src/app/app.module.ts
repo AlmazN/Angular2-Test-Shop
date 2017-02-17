@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from 'ng2-translate';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -50,7 +51,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
     NgbDropdownModule.forRoot()
   ],
-  providers: [ShopingCartService, PopupService],
+  providers: [ShopingCartService, PopupService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

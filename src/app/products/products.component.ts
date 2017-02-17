@@ -29,14 +29,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   getProductsFromServer(lang: String): void {
     this.pending = true;
     let container = this.elementRef.nativeElement.querySelector('.products-container');
-    container.classList.add('opacity50');
+    container.classList.add('opacity15');
     this.productsService
       .getProducts(lang)
       .subscribe(products => 
       {
         this.pending = false;
         this.products = products;
-        container.classList.remove('opacity50');
+        container.classList.remove('opacity15');
       }, err => {
         this.pending = false;
         console.log('Проблемы с получением списка товаров. Текст ошибки: \n' + err);

@@ -1,5 +1,6 @@
-import { TranslateService } from 'ng2-translate';
+import { TranslateService, LangChangeEvent } from 'ng2-translate';
 import { Component } from '@angular/core';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Component({
   selector: 'my-app',
@@ -9,11 +10,16 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private cookie: CookieService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
 
     let browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+
+    cookie.get('lang') ? translate.use(cookie.get('lang')) : translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+
+    translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      cookie.put('lang', event.lang);
+    });
   }
 }
