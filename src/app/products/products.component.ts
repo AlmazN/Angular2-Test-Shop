@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   getProductsFromServer(lang: String): void {
     this.pending = true;
     this.productsService
-      .getProducts(lang)
+      .getProductsFromServer(lang)
       .subscribe(products => 
       {
         this.pending = false;

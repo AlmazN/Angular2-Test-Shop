@@ -1,18 +1,24 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { TranslateService, LangChangeEvent } from 'ng2-translate';
+import { Subscription } from 'rxjs';
+
 import { ShopingCartService } from '../_services/shopping-cart.service';
 import { PopupService } from '../_services/popup.service';
+import { ProductsService } from '../_services/products.service';
 import { Product } from '../_models/product.model';
 import { CartProduct } from '../_models/cart-product.model';
 
 @Component({
   selector: 'app-shoping-cart',
   templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.css']
+  styleUrls: ['./shopping-cart.component.css'],
+  providers: [ProductsService]
 })
-export class ShopingCartComponent implements OnInit {
+export class ShopingCartComponent implements OnInit, OnDestroy {
   private cartProducts: CartProduct[];
   private productQuantityChange: Subject<CartProduct> = new Subject<CartProduct>();
+  private translateSub: Subscription;
   totalPrice: number = this.cartService.getTotalPrice();
 
   onQuantityChanged(cartProduct: CartProduct) {
@@ -33,13 +39,31 @@ export class ShopingCartComponent implements OnInit {
     this.totalPrice = this.cartService.getTotalPrice(true);
   }
 
+  private renewProducts(lang: String) {
+    let idList: Number[] = []
+
+    this.cartProducts.forEach(cartProduct => {
+      idList.push(cartProduct.product.id);
+    });
+
+    this.productService.getProductsFromServer(lang, idList);
+  }
+
   constructor(private cartService: ShopingCartService,
     private popupService: PopupService,
-    private elementRef: ElementRef) {
+    private productService: ProductsService,
+    private elementRef: ElementRef,
+    private translate: TranslateService) {
+      this.translateSub = translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        this.renewProducts(event.lang);
+      });
   }
 
   ngOnInit() {
     this.cartProducts = this.cartService.getCartProducts();
   }
 
+  ngOnDestroy() {
+    this.translateSub.unsubscribe();
+  }
 }

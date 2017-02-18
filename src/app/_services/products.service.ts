@@ -15,12 +15,12 @@ export class ProductsService {
 
   private productsURL;
 
-  getProducts(lang: String): Observable<Product[]> {
+  getProductsFromServer(lang: String, idList?: Number[]): Observable<Product[]> {
     this.productsURL = `/api/products?lang=${lang}`;
 
+    idList ? this.productsURL += `&idList=${idList}` : null;
+
     return this.http.get(this.productsURL)
-      .map((res: Response) => res.json())
-      .map(res => res.products)
       .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
   }
 
