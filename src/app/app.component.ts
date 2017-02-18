@@ -16,7 +16,8 @@ export class AppComponent {
 
     let browserLang = translate.getBrowserLang();
 
-    cookie.get('lang') ? translate.use(cookie.get('lang')) : translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    translate.getLangs().indexOf(cookie.get('lang')) ? translate.use(cookie.get('lang')) : 
+    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
 
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       cookie.put('lang', event.lang);
