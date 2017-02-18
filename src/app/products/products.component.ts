@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { TranslateService, LangChangeEvent } from 'ng2-translate';
 import { Subscription } from 'rxjs';
 import { Product } from '../_models/product.model';
@@ -19,8 +19,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   
   constructor (private productsService: ProductsService, 
               private popupService: PopupService,
-              private translate: TranslateService,
-              private elementRef: ElementRef) {
+              private translate: TranslateService) {
     this.translateSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.getProductsFromServer(event.lang);
     });
@@ -28,15 +27,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   getProductsFromServer(lang: String): void {
     this.pending = true;
-    let container = this.elementRef.nativeElement.querySelector('.products-container');
-    container.classList.add('opacity15');
     this.productsService
       .getProducts(lang)
       .subscribe(products => 
       {
         this.pending = false;
         this.products = products;
-        container.classList.remove('opacity15');
       }, err => {
         this.pending = false;
         console.log('Проблемы с получением списка товаров. Текст ошибки: \n' + err);
