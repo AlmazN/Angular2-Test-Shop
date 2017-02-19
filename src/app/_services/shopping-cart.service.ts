@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 import { Product } from '../_models/product.model';
 import { CartProduct } from '../_models/cart-product.model';
-import { Subject } from 'rxjs/Subject';
+import { ProductsService } from './products.service';
 
 @Injectable()
 export class ShopingCartService {
@@ -35,13 +36,13 @@ export class ShopingCartService {
     this.saveDataToLocalStorage();
   }
 
-  private getTotalQuantity(doNotCalculate: boolean = false):number {
+  private getTotalQuantity(doNotCalculate: boolean = false): number {
     return doNotCalculate ? this.totalQuantity : this.cartProducts.reduce((value, cartProduct) => {
       return value + cartProduct.quantity;
     }, 0);
   }
 
-  getTotalPrice(doNotCalculate: boolean = false):number {
+  getTotalPrice(doNotCalculate: boolean = false): number {
     return doNotCalculate ? this.totalPrice : this.cartProducts.reduce((value, cartProduct) => {
       return value + (cartProduct.quantity * Number(cartProduct.product.price));
     }, 0);
@@ -75,7 +76,7 @@ export class ShopingCartService {
   }
 
   restoreDataFromLocalStorage() {
-    if(localStorage) {
+    if (localStorage) {
       let restoredData = JSON.parse(localStorage.getItem('cartProducts') || null) || [];
       restoredData.map(currentElement => {
         this.addNewCartProduct(currentElement.product, currentElement.quantity);
@@ -87,7 +88,22 @@ export class ShopingCartService {
     this.productQuantitySource.next(this.getTotalQuantity(true));
   }
 
-  constructor() {
+  renewProducts(lang: String) {
+    let idList = this.cartProducts.map(cartProduct => {
+      return cartProduct.product.id;
+    });
+
+    this.productsService.getProductsFromServer(lang, idList).subscribe((products: Product[]) => {
+      this.cartProducts.forEach((cartProduct) => {
+        let product = products.find((product) => product.id === cartProduct.product.id);
+
+        cartProduct.product.name = product.name;
+        cartProduct.product.description = product.description;
+      });
+    });
+  }
+
+  constructor(private productsService: ProductsService) {
     this.restoreDataFromLocalStorage();
   }
 

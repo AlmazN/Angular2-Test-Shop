@@ -39,23 +39,13 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
     this.totalPrice = this.cartService.getTotalPrice(true);
   }
 
-  private renewProducts(lang: String) {
-    let idList: Number[] = []
-
-    this.cartProducts.forEach(cartProduct => {
-      idList.push(cartProduct.product.id);
-    });
-
-    this.productService.getProductsFromServer(lang, idList);
-  }
-
   constructor(private cartService: ShopingCartService,
     private popupService: PopupService,
     private productService: ProductsService,
     private elementRef: ElementRef,
     private translate: TranslateService) {
       this.translateSub = translate.onLangChange.subscribe((event: LangChangeEvent) => {
-        this.renewProducts(event.lang);
+        cartService.renewProducts(event.lang);
       });
   }
 

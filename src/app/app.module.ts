@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShopingCartService } from './_services/shopping-cart.service';
 import { PopupService } from './_services/popup.service';
+import { ProductsService } from './_services/products.service';
 import { HeaderComponent } from './header/header.component';
 
 export function HttpLoaderFactory(http: Http) {
@@ -51,7 +52,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
     NgbDropdownModule.forRoot()
   ],
-  providers: [ShopingCartService, PopupService, CookieService],
+  providers: [ShopingCartService, PopupService, CookieService, ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

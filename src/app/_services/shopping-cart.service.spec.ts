@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { ShopingCartService } from './shoping-cart.service';
+import { ShopingCartService } from './shopping-cart.service';
 
 describe('ShopingCartService', () => {
   beforeEach(() => {

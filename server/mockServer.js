@@ -4,26 +4,8 @@ var json_en = require('./mock.products.en.json');
 var express = require('express');
 var app = express();
 
-function findByIdList(idList, array) {
-  var result = [];
-  idList = idList.split(',');
-
-  array.forEach(function (product) {
-    if (idList.includes(product.id)) {
-      result.push(product);
-    }
-  });
-
-  return result;
-}
-
 function filterProducts(json, res, idList) {
-  var products = JSON.parse(json).products;
-
-  if (idList) {
-    products = findByIdList(idList, products);
-  }
-  res.send(products);
+  res.send(idList ? {products: json.products.filter(p => idList.includes(p.id))} : json);
 }
 
 app.get('/api/products', function (req, res) {
