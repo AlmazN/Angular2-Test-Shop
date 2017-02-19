@@ -17,7 +17,7 @@ function findByIdList(idList, array) {
   return result;
 }
 
-function filterProducts(json, idList, res) {
+function filterProducts(json, res, idList) {
   var products = JSON.parse(json).products;
 
   if (idList) {
@@ -33,13 +33,13 @@ app.get('/api/products', function (req, res) {
   setTimeout(function () {
     switch (lang) {
       case 'en':
-        filterProducts(json_en, idList, res);
+        filterProducts(json_en, res, idList);
         break;
       case 'ru':
-        filterProducts(json_ru, idList, res);
+        filterProducts(json_ru, res, idList);
         break;
       default:
-        filterProducts(json_en, idList, res);
+        filterProducts(json_en, res, idList);
     }
   }, 2000);
 })
