@@ -41,7 +41,7 @@ export class ShopingCartService {
     this.saveDataToLocalStorage();
   }
 
-  private getTotalQuantity(doNotCalculate: boolean = false): number {
+  getTotalQuantity(doNotCalculate: boolean = false): number {
     return doNotCalculate ? this.totalQuantity : this.cartProducts.reduce((value, cartProduct) => {
       return value + cartProduct.quantity;
     }, 0);
@@ -87,10 +87,6 @@ export class ShopingCartService {
         this.addNewCartProduct(currentElement.product, currentElement.quantity);
       });
     }
-  }
-
-  fireQuantityChange() {
-    this.productQuantitySource.next(this.getTotalQuantity(true));
   }
 
   renewProducts(lang: String) {
