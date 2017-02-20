@@ -109,8 +109,8 @@ export class ShopingCartService {
           cartProduct.product.description = product.description;
         });
         this.pending = false;
+        this.saveDataToLocalStorage();
       });
-      this.saveDataToLocalStorage();
     }
   }
 
