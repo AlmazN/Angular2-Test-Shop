@@ -3,6 +3,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>{{ 'Cart.productName' | translate }}</th>
         <th>{{ 'Cart.productPrice' | translate }}</th>
         <th>{{ 'Cart.productQuantity' | translate }}</th>
@@ -11,7 +12,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let cartproduct of cartProducts">
-        <td>{{ cartproduct.product.name }}</td>
+        <td><div class="loader-prdct-translate" [ngClass]="{'opacity-zero' : !isPending()}"></div></td>
+        <td [ngClass]="{'opacity30' : isPending()}">{{ cartproduct.product.name }}</td>
         <td>{{ cartproduct.product.price | currency:'USD':true:'1.2-2' }}</td>
         <td>
           <input 
@@ -30,6 +32,7 @@
       </tr>
     </tbody>
     <tfoot>
+      <td></td>
       <td></td>
       <td></td>
       <td>{{ 'Cart.totalPrice' | translate }}:</td>

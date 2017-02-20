@@ -61,10 +61,16 @@ ul.ui.list li:before {
   margin: auto;
 }
 
-.loader {
+.loader-products {
   background: url(images/loader-icon.gif) no-repeat center center;
   width: 124px;
   height: 124px;
+}
+
+.loader-prdct-translate {
+  background: url(images/product-translate.svg) no-repeat center center;
+  width: 18px;
+  height: 18px;
 }
 
 .popup {
@@ -90,4 +96,12 @@ ul.ui.list li:before {
 
 .opacity15 {
   opacity: .15;
+}
+
+.opacity30 {
+  opacity: .30;
+}
+
+.opacity-zero {
+  opacity: 0;
 }

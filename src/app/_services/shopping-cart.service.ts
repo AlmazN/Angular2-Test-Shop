@@ -13,6 +13,7 @@ export class ShopingCartService {
   private totalQuantity: number = 0;
   private totalPrice: number = 0;
   private translateSub: Subscription;
+  public pending: boolean = false;
   productQuantitySource = new Subject<number>();
   changeProductQuantity$ = this.productQuantitySource.asObservable();
 
@@ -94,6 +95,8 @@ export class ShopingCartService {
 
   renewProducts(lang: String) {
     if (this.cartProducts.length > 0) {
+      this.pending = true;
+
       let idList = this.cartProducts.map(cartProduct => {
         return cartProduct.product.id;
       });
@@ -105,19 +108,19 @@ export class ShopingCartService {
           cartProduct.product.name = product.name;
           cartProduct.product.description = product.description;
         });
+        this.pending = false;
       });
-
       this.saveDataToLocalStorage();
     }
   }
 
   constructor(private productsService: ProductsService,
     private translate: TranslateService) {
-    this.restoreDataFromLocalStorage();
-
     this.translateSub = translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.renewProducts(event.lang);
     });
+
+    this.restoreDataFromLocalStorage();
   }
 
 }

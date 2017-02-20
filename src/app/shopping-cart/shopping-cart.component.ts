@@ -38,6 +38,11 @@ export class ShopingCartComponent implements OnInit {
     this.totalPrice = this.cartService.getTotalPrice(true);
   }
 
+  isPending(): boolean {
+    console.log(this.cartService.pending);
+    return this.cartService.pending;
+  }
+
   constructor(private cartService: ShopingCartService,
     private popupService: PopupService,
     private productService: ProductsService,
