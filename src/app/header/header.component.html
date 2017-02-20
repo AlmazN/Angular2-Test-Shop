@@ -19,7 +19,7 @@
       <ul class="dropdown-menu" aria-labelledby="langSwitch">
         <li *ngFor="let lang of translate.getLangs()"
         class="dropdown-item"
-        (click)="translate.use(lang)">{{ lang }}</li>
+        (click)="changeLang(lang)">{{ lang }}</li>
       </ul>
     </div>
   </div>

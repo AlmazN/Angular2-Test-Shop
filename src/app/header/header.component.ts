@@ -13,6 +13,10 @@ export class HeaderComponent implements OnDestroy {
   subscription: Subscription;
   cartProductQuantity: number;
 
+  changeLang(lang: string) {
+    this.translate.currentLang !== lang ? this.translate.use(lang) : null;
+  }
+
   constructor(private shopingCartService: ShopingCartService, private translate: TranslateService) {
     this.cartProductQuantity = shopingCartService.getTotalQuantity(true);
 
