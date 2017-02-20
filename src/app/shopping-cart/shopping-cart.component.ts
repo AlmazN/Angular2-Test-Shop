@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { TranslateService, LangChangeEvent } from 'ng2-translate';
 import { Subscription } from 'rxjs';
@@ -15,10 +15,9 @@ import { CartProduct } from '../_models/cart-product.model';
   styleUrls: ['./shopping-cart.component.css'],
   providers: [ProductsService]
 })
-export class ShopingCartComponent implements OnInit, OnDestroy {
+export class ShopingCartComponent implements OnInit {
   private cartProducts: CartProduct[];
   private productQuantityChange: Subject<CartProduct> = new Subject<CartProduct>();
-  private translateSub: Subscription;
   totalPrice: number = this.cartService.getTotalPrice();
 
   onQuantityChanged(cartProduct: CartProduct) {
@@ -42,18 +41,10 @@ export class ShopingCartComponent implements OnInit, OnDestroy {
   constructor(private cartService: ShopingCartService,
     private popupService: PopupService,
     private productService: ProductsService,
-    private elementRef: ElementRef,
-    private translate: TranslateService) {
-      this.translateSub = translate.onLangChange.subscribe((event: LangChangeEvent) => {
-        cartService.renewProducts(event.lang);
-      });
+    private elementRef: ElementRef) {
   }
 
   ngOnInit() {
     this.cartProducts = this.cartService.getCartProducts();
-  }
-
-  ngOnDestroy() {
-    this.translateSub.unsubscribe();
   }
 }

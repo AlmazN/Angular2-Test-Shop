@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { TranslateService, LangChangeEvent } from 'ng2-translate';
+import { Subscription } from 'rxjs';
+
 import { Product } from '../_models/product.model';
 import { CartProduct } from '../_models/cart-product.model';
 import { ProductsService } from './products.service';
@@ -9,6 +12,7 @@ export class ShopingCartService {
   private cartProducts: CartProduct[] = [];
   private totalQuantity: number = 0;
   private totalPrice: number = 0;
+  private translateSub: Subscription;
   productQuantitySource = new Subject<number>();
   changeProductQuantity$ = this.productQuantitySource.asObservable();
 
@@ -89,22 +93,31 @@ export class ShopingCartService {
   }
 
   renewProducts(lang: String) {
-    let idList = this.cartProducts.map(cartProduct => {
-      return cartProduct.product.id;
-    });
-
-    this.productsService.getProductsFromServer(lang, idList).subscribe((products: Product[]) => {
-      this.cartProducts.forEach((cartProduct) => {
-        let product = products.find((product) => product.id === cartProduct.product.id);
-
-        cartProduct.product.name = product.name;
-        cartProduct.product.description = product.description;
+    if (this.cartProducts.length > 0) {
+      let idList = this.cartProducts.map(cartProduct => {
+        return cartProduct.product.id;
       });
-    });
+
+      this.productsService.getProductsFromServer(lang, idList).subscribe((products: Product[]) => {
+        this.cartProducts.forEach((cartProduct) => {
+          let product = products.find((product) => product.id === cartProduct.product.id);
+
+          cartProduct.product.name = product.name;
+          cartProduct.product.description = product.description;
+        });
+      });
+
+      this.saveDataToLocalStorage();
+    }
   }
 
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService,
+    private translate: TranslateService) {
     this.restoreDataFromLocalStorage();
+
+    this.translateSub = translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.renewProducts(event.lang);
+    });
   }
 
 }
