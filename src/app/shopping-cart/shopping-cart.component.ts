@@ -39,7 +39,6 @@ export class ShopingCartComponent implements OnInit {
   }
 
   isPending(): boolean {
-    console.log(this.cartService.pending);
     return this.cartService.pending;
   }
 

@@ -101,8 +101,10 @@ export class ShopingCartService {
         this.cartProducts.forEach((cartProduct) => {
           let product = products.find((product) => product.id === cartProduct.product.id);
 
-          cartProduct.product.name = product.name;
-          cartProduct.product.description = product.description;
+          if(product) {
+            cartProduct.product.name = product.name;
+            cartProduct.product.description = product.description;
+          }
         });
         this.pending = false;
         this.saveDataToLocalStorage();

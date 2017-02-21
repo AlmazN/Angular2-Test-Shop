@@ -5,7 +5,13 @@ var express = require('express');
 var app = express();
 
 function filterProducts(json, res, idList) {
-  res.send(idList ? {products: json.products.filter(p => idList.includes(p.id))} : json);
+  res.send(idList ? {products: json.products.filter(p => idList.includes(p.id)).map(p => {
+      return {
+        id: p.id,
+        name: p.name,
+        description: p.description
+      }
+    })} : json);
 }
 
 app.get('/api/products', function (req, res) {
