@@ -46,9 +46,9 @@ ul.ui.list li:before {
 }
 
 .center-container {
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 50%;
+  top: 40%;
   z-index: 999;
 }
 
