@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   pending: boolean;
   translateSub: Subscription;
+  currentPage: number = 4;
   
   constructor (private productsService: ProductsService, 
               private popupService: PopupService,

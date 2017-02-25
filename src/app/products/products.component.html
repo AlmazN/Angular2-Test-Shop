@@ -3,9 +3,9 @@
 		<div>{{ 'Catalog.pendingMessage' | translate }}</div>
 		<div class="loader-products"></div>
 	</div>
-	</div>
+</div>
 <div class="ui grid posts products-container" [ngClass]="{'opacity15' : pending}">
-	<app-product *ngFor="let product of products | quantityFilter"
-		[product]="product">
+	<app-product-pagination></app-product-pagination>
+	<app-product *ngFor="let product of products | quantityFilter" [product]="product">
 	</app-product>
 </div>

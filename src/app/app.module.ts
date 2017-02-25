@@ -22,6 +22,7 @@ import { ShopingCartService } from './_services/shopping-cart.service';
 import { PopupService } from './_services/popup.service';
 import { ProductsService } from './_services/products.service';
 import { HeaderComponent } from './header/header.component';
+import { ProductPaginationComponent } from './product-pagination/product-pagination.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(http: Http) {
     QuantityFilterPipe,
     PopupComponent,
     ShopingCartComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductPaginationComponent
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),
