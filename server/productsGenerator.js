@@ -16,10 +16,12 @@ for(i = 1; i <= 100; i++) {
 
   objRu.products.push({
     id: i,
-    name: faker.commerce.productName(),
+    name: random > 5 ? random < 8 ? faker.commerce.product() : `${faker.commerce.productAdjective()} ${faker.commerce.product()}`
+    : random > 2 ? `${faker.commerce.productMaterial()} ${faker.commerce.productAdjective()} ${faker.commerce.product()}`: 
+    `${faker.commerce.productMaterial()} ${faker.commerce.productAdjective()} ${faker.commerce.product()} ${faker.commerce.product()}`,
     description: faker.lorem.paragraph(),
     price: generatedPrice,
-    quantity: random > 4 ? generatedQuantity : 0,
+    quantity: random > 2 ? generatedQuantity : 0,
     imageURL: "http://placehold.it/150/dff9f6"
   });
 
@@ -27,10 +29,12 @@ for(i = 1; i <= 100; i++) {
 
   objEn.products.push({
     id: i,
-    name: faker.commerce.productName(),
+    name: random > 5 ? random < 8 ? faker.commerce.product() : `${faker.commerce.productAdjective()} ${faker.commerce.product()}`
+    : random > 2 ? `${faker.commerce.productMaterial()} ${faker.commerce.productAdjective()} ${faker.commerce.product()}`: 
+    `${faker.commerce.productMaterial()} ${faker.commerce.productAdjective()} ${faker.commerce.product()} ${faker.commerce.product()}`,
     description: faker.lorem.paragraph(),
     price: generatedPrice,
-    quantity: random > 4 ? generatedQuantity : 0,
+    quantity: random > 2 ? generatedQuantity : 0,
     imageURL: "http://placehold.it/150/dff9f6"
   });
 }
