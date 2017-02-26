@@ -1,8 +1,5 @@
 let fs = require('fs'),
-    FakeratorRu = require('fakerator'),
-    FakeratorEn = require('fakerator'),
-    fakeratorRu = FakeratorRu('ru-RU'),
-    fakeratorEn = FakeratorEn(); //en-EN
+    faker = require('faker');
 
 let objRu = {
   products: []
@@ -12,24 +9,28 @@ objEn = {
 };
 
 for(i = 1; i <= 100; i++) {
-  let generatedPrice = fakeratorRu.random.number(1,9999),
-      generatedQuantity = fakeratorRu.random.number(0, 9999);
+  let generatedPrice = faker.random.number(5000),
+      generatedQuantity = faker.random.number(5000),
+      random = Math.random() * 10;
+      faker.locale = "ru";
 
   objRu.products.push({
     id: i,
-    name: fakeratorRu.lorem.word(),
-    description: fakeratorRu.lorem.paragraph(),
+    name: faker.commerce.productName(),
+    description: faker.lorem.paragraph(),
     price: generatedPrice,
-    quantity: generatedQuantity,
+    quantity: random > 4 ? generatedQuantity : 0,
     imageURL: "http://placehold.it/150/dff9f6"
   });
 
+  faker.locale = "en";
+
   objEn.products.push({
     id: i,
-    name: fakeratorEn.lorem.word(),
-    description: fakeratorEn.lorem.paragraph(),
+    name: faker.commerce.productName(),
+    description: faker.lorem.paragraph(),
     price: generatedPrice,
-    quantity: generatedQuantity,
+    quantity: random > 4 ? generatedQuantity : 0,
     imageURL: "http://placehold.it/150/dff9f6"
   });
 }
@@ -37,7 +38,15 @@ for(i = 1; i <= 100; i++) {
 let jsonRu = JSON.stringify(objRu),
     jsonEn = JSON.stringify(objEn);
 
-fs.writeFile('server/mock.products.ru.json', jsonRu);
-fs.writeFile('server/mock.products.en.json', jsonEn);
+fs.writeFile('server/mock.products.ru.json', jsonRu, err => {
+  if(err) {
+    throw err;
+  }
+});
+fs.writeFile('server/mock.products.en.json', jsonEn, err => {
+  if(err) {
+    throw err;
+  }
+});
 
 
