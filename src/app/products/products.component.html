@@ -5,7 +5,8 @@
 	</div>
 </div>
 <div class="ui grid posts products-container" [ngClass]="{'opacity15' : pending}">
-	<app-product-pagination></app-product-pagination>
-	<app-product *ngFor="let product of products | quantityFilter" [product]="product">
+	<pagination-controls class="products-pagination" (pageChange)="p = $event"></pagination-controls>
+	<app-product *ngFor="let product of products | quantityFilter | paginate: { itemsPerPage: 10, currentPage: p }" [product]="product">
 	</app-product>
+	<pagination-controls class="products-pagination" (pageChange)="p = $event"></pagination-controls>
 </div>

@@ -7,6 +7,7 @@ import { TranslateModule, TranslateLoader } from 'ng2-translate';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(http: Http) {
       useFactory: HttpLoaderFactory,
       deps: [Http]
     }),
-    NgbDropdownModule.forRoot()
+    NgbDropdownModule.forRoot(),
+    Ng2PaginationModule
   ],
   providers: [ShopingCartService, PopupService, CookieService, ProductsService],
   bootstrap: [AppComponent]
