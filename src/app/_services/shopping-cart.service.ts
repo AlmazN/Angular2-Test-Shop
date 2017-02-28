@@ -97,9 +97,9 @@ export class ShopingCartService {
         return cartProduct.product.id;
       });
 
-      this.productsService.getProductsFromServer(lang, idList).subscribe((products: Product[]) => {
+      this.productsService.getProductsFromServer(lang, null, null, idList).subscribe(res => {
         this.cartProducts.forEach((cartProduct) => {
-          let product = products.find((product) => product.id === cartProduct.product.id);
+          let product = res.products.find(product => product.id === cartProduct.product.id);
 
           if(product) {
             cartProduct.product.name = product.name;

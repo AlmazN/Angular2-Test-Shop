@@ -6,6 +6,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+interface ServerResponse {
+  products: Product[],
+  total: number;
+}
+
 @Injectable()
 export class ProductsService {
 
@@ -15,14 +20,15 @@ export class ProductsService {
 
   private productsURL = '/api/products';
 
-  getProductsFromServer(lang: String, idList?: Number[]): Observable<Product[]> {
+  getProductsFromServer(lang: String, page?: number, count?: number, idList?: Number[]): Observable<ServerResponse> {
     let productsURL = `${this.productsURL}?lang=${lang}`;
 
+    page ? productsURL += `&page=${page}` : null;
+    count ? productsURL += `&count=${count}` : null;
     idList ? productsURL += `&idList=${idList}` : null;
 
     return this.http.get(productsURL)
       .map(res => res.json())
-      .map(res => res.products)
       .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
   }
 
