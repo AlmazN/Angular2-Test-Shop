@@ -13,9 +13,9 @@ interface ServerResponse {
 
 @Injectable()
 export class ProductsService {
+  productsCache;
 
   constructor(private http: Http) {
-    
   }
 
   private productsURL = '/api/products';
@@ -27,8 +27,14 @@ export class ProductsService {
     count ? productsURL += `&count=${count}` : null;
     idList ? productsURL += `&idList=${idList}` : null;
 
+    console.log(productsURL);
+
     return this.http.get(productsURL)
       .map(res => res.json())
+      .do(res => {
+        this.productsCache = res.products;
+        console.log(this.productsCache);
+      })
       .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
   }
 

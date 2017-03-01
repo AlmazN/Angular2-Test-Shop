@@ -6,7 +6,7 @@ var app = express();
 
 function filterProducts(json, res, idList, page, count) {
   const start = (page - 1) * count;
-  const end = start + count;
+  const end = page * count;
 
   res.send(idList ? {products: json.products.filter(p => idList.includes(p.id)).map(p => {
       return {
