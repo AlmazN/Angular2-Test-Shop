@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService, LangChangeEvent } from 'ng2-translate';
 import { Subscription } from 'rxjs';
 import { Product } from '../_models/product.model';
@@ -9,8 +9,7 @@ import { PopupService } from '../_services/popup.service';
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  providers: [ProductsService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [ProductsService]
 })
 
 export class ProductsComponent implements OnInit, OnDestroy {
@@ -19,7 +18,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   translateSub: Subscription;
   currentPage: number = 1;
   total: number;
-  lang: TranslateService;
   productsPerPage: number = 10;
 
   constructor (private productsService: ProductsService, 
@@ -38,7 +36,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       {
         this.pending = false;
         this.currentPage = page;
-        console.log(res.total);
         this.total = res.total;
         this.products = res.products;
       }, err => {

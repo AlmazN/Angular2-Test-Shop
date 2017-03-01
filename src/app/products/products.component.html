@@ -5,8 +5,9 @@
 	</div>
 </div>
 <div class="ui grid posts products-container" [ngClass]="{'opacity15' : pending}">
-	<pagination-controls class="products-pagination" (pageChange)="p = $event"></pagination-controls>
-	<app-product *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: total }" [product]="product">
+	<pagination-controls class="products-pagination" (pageChange)="getProductsFromServer(this.translate.currentLang, $event, productsPerPage)"></pagination-controls>
+	<app-product *ngFor="let product of products | paginate: { itemsPerPage: productsPerPage, currentPage: currentPage, totalItems: total }" 
+	[product]="product">
 	</app-product>
-	<pagination-controls class="products-pagination" (pageChange)="getProductsFromServer(lang.currentLang, $event, productsPerPage)"></pagination-controls>
+	<pagination-controls class="products-pagination" (pageChange)="getProductsFromServer(this.translate.currentLang, $event, productsPerPage)"></pagination-controls>
 </div>
