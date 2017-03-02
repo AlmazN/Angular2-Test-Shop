@@ -7,26 +7,30 @@ var app = express();
 function filterProducts(json, res, idList, page, count) {
   const start = (page - 1) * count;
   const end = page * count;
+  let result = {}, filtredList;
 
-  res.send(idList ? {products: json.products.filter(p => idList.includes(p.id)).map(p => {
+  if(idList) {
+    filtredList = json.products.filter(p => p.quantity > 0).filter(p => idList.includes(p.id));
+    result.products = filtredList.map(p => {
       return {
         id: p.id,
         name: p.name,
         description: p.description
       }
-    }),
-    total: json.products.filter(p => idList.includes(p.id)).length} : 
-    {
-      products: json.products.filter(p => p.quantity > 0).slice(start, end),
-      total: json.products.filter(p => p.quantity > 0).length
     });
+  } else {
+    filtredList = json.products.filter(p => p.quantity > 0);
+    result.products = filtredList.slice(start, end);
+  }
+  result.total = filtredList.length;
+  res.send(result);
 }
 
 app.get('/api/products', function (req, res) {
-  var lang = req.param('lang'),
-      idList = req.param('idList'),
-      page = req.param('page'),
-      count = req.param('count');
+  var lang = req.query['lang'],
+      idList = req.query['idList'],
+      page = req.query['page'],
+      count = req.query['count'];
 
   setTimeout(function () {
     switch (lang) {
