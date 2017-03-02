@@ -13,7 +13,7 @@ interface ServerResponse {
 
 @Injectable()
 export class ProductsService {
-  productsCache;
+  productsCache = [];
 
   constructor(private http: Http) {
   }
@@ -27,15 +27,26 @@ export class ProductsService {
     count ? productsURL += `&count=${count}` : null;
     idList ? productsURL += `&idList=${idList}` : null;
 
-    console.log(productsURL);
+    console.log(`Отсылаем запрос на сервер ${productsURL}`);
 
-    return this.http.get(productsURL)
-      .map(res => res.json())
-      .do(res => {
-        this.productsCache = res.products;
-        console.log(this.productsCache);
-      })
-      .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
+    let cachedProducts = this.productsCache.find(data => {
+      return data.query === productsURL;
+    });
+
+    if (cachedProducts) {
+      console.log(`Данные пришли из кэша`);
+      return Observable.of(cachedProducts.data);
+    } else {
+      return this.http.get(productsURL)
+        .map(res => res.json())
+        .do(res => {
+          this.productsCache.push({
+            query: productsURL,
+            data: res
+          });
+          console.log(`Данные пришли с сервера.`);
+        })
+        .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
+    }
   }
-
 }
