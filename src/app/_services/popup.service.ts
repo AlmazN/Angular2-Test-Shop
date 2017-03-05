@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Popup } from '../_models/popup.model';
 import { Subject } from 'rxjs/Subject';
+import { TranslateService } from 'ng2-translate';
 
 @Injectable()
 export class PopupService {
@@ -10,7 +11,7 @@ export class PopupService {
 
   dataChange$ = this.dataSource.asObservable();
 
-  doShow(settings: Popup): void {
+  showPopup(settings: Popup): void {
     let popup = new Popup(settings);
     this.data.push(popup);
     if (popup.delay) {
@@ -20,6 +21,7 @@ export class PopupService {
           this.data.splice(index, 1);
         }
       }, popup.delay);
+      popup.i18n === true ? this.translate.get(popup.text).subscribe(res => popup.text = res) : null;
       this.dataSource.next(this.data);
     }
   }
@@ -36,6 +38,6 @@ export class PopupService {
     this.dataSource.next(this.data);
   }
 
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
 }

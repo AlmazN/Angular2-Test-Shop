@@ -27,14 +27,11 @@ export class ProductsService {
     count ? productsURL += `&count=${count}` : null;
     idList ? productsURL += `&idList=${idList}` : null;
 
-    console.log(`Отсылаем запрос на сервер ${productsURL}`);
-
     let cachedProducts = this.productsCache.find(data => {
       return data.query === productsURL;
     });
 
     if (cachedProducts) {
-      console.log(`Данные пришли из кэша`);
       return Observable.of(cachedProducts.data);
     } else {
       return this.http.get(productsURL)
@@ -44,7 +41,6 @@ export class ProductsService {
             query: productsURL,
             data: res
           });
-          console.log(`Данные пришли с сервера.`);
         })
         .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
     }

@@ -24,6 +24,9 @@
         "Checkout": "Оформить заказ",
         "catalogLink": "Перейти в каталог"
     },
+    "AlertMsg": {
+        "notImplemented": "Эта функция не реализована..."
+    },
     "Lang": {
         "currentLang": "Русский"
     }

@@ -7,6 +7,7 @@ export class Popup {
   dismissible?: boolean = true;
   delay?: number = 2500;
   timeoutID?: any = null;
+  i18n?: boolean = false;
 
   constructor(popup: Popup) {
     Object.assign(this, popup);

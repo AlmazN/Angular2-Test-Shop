@@ -24,6 +24,9 @@
         "Checkout": "Checkout",
         "catalogLink": "Go to Catalog"
     },
+    "AlertMsg": {
+        "notImplemented": "This functionality is not implemented..."
+    },
     "Lang": {
         "currentLang": "English"
     }

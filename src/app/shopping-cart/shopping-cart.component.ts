@@ -26,9 +26,10 @@ export class ShopingCartComponent implements OnInit {
   }
 
   checkout() {
-    this.popupService.doShow({
-      text: 'This functionality is not implemented...',
-      type: 'warning'
+    this.popupService.showPopup({
+      text: 'AlertMsg.notImplemented',
+      type: 'warning',
+      i18n: true
     });
   }
 
